@@ -4,11 +4,12 @@ import (
     "encoding/json"
     "errors"
     "fmt"
+    "github.com/houseme/mipush/util/HttpClient"
     "net/url"
 )
 
 //基础参数
-type CommonParam struct {
+/*type CommonParam struct {
     RegistrationId string `json:"registration_id"`
     Alias          string `json:"alias"`
     UserAccount    string `json:"user_account"`
@@ -30,6 +31,7 @@ type Message struct {
     NotifyID              int64             `json:"notify_id,omitempty"`
     Extra                 map[string]string `json:"extra,omitempty"`
 }
+*/
 
 //通过RegId群推
 func SendMessageByRegIds(appSecret string, message *Message) (*Result, error) {

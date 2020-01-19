@@ -1,7 +1,8 @@
-package mipush
+package util
 
 import (
     "fmt"
+    "github.com/houseme/mipush"
     "io/ioutil"
     "net/http"
     "net/url"
@@ -9,7 +10,11 @@ import (
     "time"
 )
 
-func DoPost(uri string, appSecret string, form *url.Values) ([]byte, error) {
+type HttpClient struct {
+
+}
+
+func (ht *HttpClient) DoPost(uri string, appSecret string, form *url.Values) ([]byte, error) {
     param := ""
     if form != nil {
         param = form.Encode()
@@ -37,7 +42,7 @@ func DoPost(uri string, appSecret string, form *url.Values) ([]byte, error) {
     return body, nil
 }
 
-func DoGet(uri string, appSecret string, form *url.Values) ([]byte, error) {
+func  (ht *HttpClient) DoGet(uri string, appSecret string, form *url.Values) ([]byte, error) {
     param := ""
     if form != nil {
         param = form.Encode()
@@ -66,5 +71,5 @@ func DoGet(uri string, appSecret string, form *url.Values) ([]byte, error) {
 }
 
 func baseHost() string {
-    return ProductionHost
+    return mipush.ProductionHost
 }

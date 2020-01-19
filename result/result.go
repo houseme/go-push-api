@@ -1,4 +1,4 @@
-package mipush
+package result
 
 //小米推送接口返回的结果，主体结构是一致的
 type Result struct {
