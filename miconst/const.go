@@ -5,7 +5,7 @@ const (
     SandboxHost    = "https://sandbox.xmpush.xiaomi.com"
     ProductionHost = "https://api.xmpush.xiaomi.com"
     
-    MessageRegIdURL   = "/v3/message/regid"
+    MessageRegIdURL   = "/v4/message/regid"
     MessageAliasURL   = "/v3/message/alias"
     MessageAllURL     = "/v3/message/all"
     MessageAccountURL = "/v2/message/user_account"
