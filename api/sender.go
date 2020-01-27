@@ -5,6 +5,9 @@ import (
     "errors"
     "fmt"
     "net/url"
+    
+    _ "github.com/houseme/mipush/result"
+    _ "github.com/houseme/mipush/httpclient"
 )
 
 //基础参数
@@ -41,7 +44,7 @@ func SendMessageByRegIds(appSecret string, message *Message) (*Result, error) {
     form, _ := messageToForm(message)
     form.Add("registration_id", message.RegistrationId) //追加registration_id
     
-    res, err := DoPost(MessageRegIdURL, appSecret, form)
+    res, err := httpclient.DoPost(MessageRegIdURL, appSecret, form)
     if err != nil {
         return nil, err
     }
