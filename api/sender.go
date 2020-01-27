@@ -4,11 +4,11 @@ import (
     "encoding/json"
     "errors"
     "fmt"
-    "github.com/houseme/mipush/util/HttpClient"
     "net/url"
     
+    "github.com/houseme/mipush/miconst"
     _ "github.com/houseme/mipush/result"
-    _ "github.com/houseme/mipush/httpclient"
+    "github.com/houseme/mipush/util"
 )
 
 //基础参数
@@ -61,7 +61,7 @@ func SendMessageByRegIds(appSecret string, message *Message) (*Result, error) {
 }
 
 //通过Alias群推
-func SendMessageByRegAliasIds(appSecret string, message *Message) (*Result, error) {
+func SendMessageByRegAliasIds(appSecret string, message *Builder) (*Result, error) {
     
     if message.Alias == "" {
         return nil, errors.New("alias is required")
@@ -70,7 +70,7 @@ func SendMessageByRegAliasIds(appSecret string, message *Message) (*Result, erro
     form, _ := messageToForm(message)
     form.Add("alias", message.Alias) //追加alias
     
-    res, err := DoPost(MessageAliasURL, appSecret, form)
+    res, err := util.HttpClient.DoPost(miconst.MessageAliasURL, appSecret, form)
     if err != nil {
         return nil, err
     }

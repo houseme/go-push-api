@@ -1,4 +1,4 @@
-package mipush
+package miconst
 
 
 const (

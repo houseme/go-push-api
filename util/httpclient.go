@@ -8,7 +8,7 @@ import (
     "strings"
     "time"
     
-    "github.com/houseme/mipush"
+    "github.com/houseme/mipush/miconst"
 )
 
 type HttpClient struct {
@@ -71,5 +71,5 @@ func (httpClient HttpClient) DoGet(uri string, appSecret string, form *url.Value
 }
 
 func (httpClient HttpClient) baseHost() string {
-    return mipush.ProductionHost
+    return miconst.ProductionHost
 }
