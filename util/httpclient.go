@@ -11,10 +11,7 @@ import (
     "github.com/houseme/mipush/miconst"
 )
 
-type HttpClient struct {
-}
-
-func (httpClient HttpClient) DoPost(uri string, appSecret string, form *url.Values) ([]byte, error) {
+func DoPost(uri string, appSecret string, form *url.Values) ([]byte, error) {
     param := ""
     if form != nil {
         param = form.Encode()
@@ -22,7 +19,7 @@ func (httpClient HttpClient) DoPost(uri string, appSecret string, form *url.Valu
     
     //fmt.Println(strings.NewReader(param))
     
-    req, err := http.NewRequest("POST", fmt.Sprintf("%s", httpClient.baseHost()+uri), strings.NewReader(param))
+    req, err := http.NewRequest("POST", fmt.Sprintf("%s", baseHost()+uri), strings.NewReader(param))
     
     if err != nil {
         return nil, err
@@ -42,14 +39,14 @@ func (httpClient HttpClient) DoPost(uri string, appSecret string, form *url.Valu
     return body, nil
 }
 
-func (httpClient HttpClient) DoGet(uri string, appSecret string, form *url.Values) ([]byte, error) {
+func DoGet(uri string, appSecret string, form *url.Values) ([]byte, error) {
     param := ""
     if form != nil {
         param = form.Encode()
     }
     
     req, err := http.NewRequest("GET",
-        fmt.Sprintf("%s?%s", httpClient.baseHost()+uri, param),
+        fmt.Sprintf("%s?%s", baseHost()+uri, param),
         nil)
     
     if err != nil {
@@ -70,6 +67,6 @@ func (httpClient HttpClient) DoGet(uri string, appSecret string, form *url.Value
     return body, nil
 }
 
-func (httpClient HttpClient) baseHost() string {
+func baseHost() string {
     return miconst.ProductionHost
 }
