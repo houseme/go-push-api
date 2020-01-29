@@ -1,10 +1,11 @@
 package api
 
 import (
-    "encoding/json"
     "errors"
     "fmt"
     "net/url"
+    
+    "github.com/json-iterator/go"
     
     "github.com/houseme/mipush/builder"
     "github.com/houseme/mipush/miconst"
@@ -28,6 +29,7 @@ func SendMessageByRegIds(appSecret string, builder *builder.Builder) (*result.Re
     }
     
     var result = &result.Result{}
+    var json = jsoniter.ConfigCompatibleWithStandardLibrary
     err = json.Unmarshal(res, result)
     if err != nil {
         return result, err
@@ -52,6 +54,7 @@ func SendMessageByRegAliasIds(appSecret string, builder *builder.Builder) (*resu
     }
     
     var result = &result.Result{}
+    var json = jsoniter.ConfigCompatibleWithStandardLibrary
     err = json.Unmarshal(res, result)
     if err != nil {
         return result, err
@@ -66,6 +69,7 @@ func SendMessageAll(appSecret string, builder *builder.Builder) (*result.Result,
     form, _ := messageToForm(builder)
     res, err := util.DoPost(miconst.MessageAllURL, appSecret, form)
     var result = &result.Result{}
+    var json = jsoniter.ConfigCompatibleWithStandardLibrary
     err = json.Unmarshal(res, result)
     if err != nil {
         return result, err

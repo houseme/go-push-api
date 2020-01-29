@@ -1,9 +1,11 @@
 package miconst
 
+type Region string
 
 const (
-    SandboxHost    = "https://sandbox.xmpush.xiaomi.com"
-    ProductionHost = "https://api.xmpush.xiaomi.com"
+    SandboxHost          = "https://sandbox.xmpush.xiaomi.com"
+    ProductionHost       = "https://api.xmpush.xiaomi.com"
+    GlobalProductionHost = "https://api.xmpush.global.xiaomi.com"
     
     MessageRegIdURL   = "/v4/message/regid"
     MessageAliasURL   = "/v3/message/alias"
@@ -33,4 +35,50 @@ const (
     
     ScheduleJobExistURL  = "/v2/schedule_job/exist"
     ScheduleJobDeleteURL = "/v2/schedule_job/delete"
+    
+    GetRegIdsByUserAccountURL = "/v1/useraccount/get_regids_by_useraccount"
+    //上传大图API
+    MediaUploadImageURL = "/media/upload/image"
+    
+    //添加channel
+    ChannelAddURL = "/v1/channel/add"
+    
+    //channel list
+    ChannelListURL = "/v1/channel/list"
+    
+    //删除一个channel
+    ChannelDiscardURL = "/v1/channel/discard"
+    
+    //批量查询RegId的注册地区
+    GetRegionByRegIdURL = "/v1/feedback/get_region_by_regid"
+    
+    //消息ID停止消息
+    StopByIdURL = "/v1/message/switch/stop_by_id"
+    
+    //消息jobkey停止消息
+    StopByJobKeyURL = "/v1/message/switch/stop_by_jobkey"
+    
+    //设备alias撤回消息
+    MessageAliasRevokeURL = "/v1/message/alias/revoke"
+    
+    //设备regId撤回消息
+    MessageRegIdRevokeURL = "/v1/message/regid/revoke"
+    
+    //设备userAccount撤回消息
+    MessageUserAccountRevokeURL = "/v1/message/user_account/revoke"
+    
+    //撤回topic消息
+    MessageTopicRevokeURL = "/v1/message/topic/revoke"
+    
+    //撤回多topic消息
+    MessageMultiTopicRevokeURL = "/v1/message/multi_topic/revoke"
+    
+    MediaUploadSmallIconQueryURL = "/media/upload/smallIcon/query"
+    MediaUploadSmallIconUrl      = "/media/upload/smallIcon"
+    
+    RegionChina  Region = "China"
+    RegionEurope Region = "Europe"
+    RegionRussia Region = "Russia"
+    RegionIndia  Region = "India"
+    RegionOther  Region = "Other"
 )
