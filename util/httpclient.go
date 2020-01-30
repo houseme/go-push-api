@@ -60,8 +60,11 @@ func DoPostByFastHttp(builder *builder.Builder, params builder.CommonParams) ([]
     req.SetRequestURI(baseHost(params.MiEnv) + params.MiUrl)
     
     req.SetBody(form.QueryString())
+    if params.TimeOut == 0{
+        params.TimeOut = miconst.DefaultTimeOut
+    }
     
-    if err := fasthttp.DoTimeout(req, resp, miconst.DefaultTimeOut); err != nil {
+    if err := fasthttp.DoTimeout(req, resp, params.TimeOut); err != nil {
         fmt.Println("请求失败:", err.Error())
         return nil, err
     }
@@ -93,8 +96,10 @@ func DoGetByFastHttp(builder *builder.Builder, params builder.CommonParams) ([]b
     req.SetRequestURI(baseHost(params.MiEnv) + params.MiUrl)
     
     req.SetBody(form.QueryString())
-    
-    if err := fasthttp.DoTimeout(req, resp, miconst.DefaultTimeOut); err != nil {
+    if params.TimeOut == 0{
+        params.TimeOut = miconst.DefaultTimeOut
+    }
+    if err := fasthttp.DoTimeout(req, resp, params.TimeOut); err != nil {
         fmt.Println("请求失败:", err.Error())
         return nil, err
     }

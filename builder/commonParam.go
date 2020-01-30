@@ -10,6 +10,8 @@
 package builder
 
 import (
+    "time"
+    
     "github.com/houseme/mipush/miconst"
 )
 
@@ -18,4 +20,5 @@ type CommonParams struct {
     MiUrl     string
     HttpType  miconst.HttpType
     MiEnv     miconst.RequestEnv
+    TimeOut   time.Duration
 }
