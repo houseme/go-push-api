@@ -1,10 +1,18 @@
 package miconst
 
+import (
+    "time"
+)
+
 type Region string
+
+type HttpType string
+
+type RequestEnv string
 
 const (
     SandboxHost          = "https://sandbox.xmpush.xiaomi.com"
-    ProductionHost       = "https://api.xmpush.xiaomi.com"
+    OfficialHost       = "https://api.xmpush.xiaomi.com"
     GlobalProductionHost = "https://api.xmpush.global.xiaomi.com"
     
     MessageRegIdURL   = "/v4/message/regid"
@@ -81,4 +89,14 @@ const (
     RegionRussia Region = "Russia"
     RegionIndia  Region = "India"
     RegionOther  Region = "Other"
+    
+    //Http 类型
+    FastHttpType     HttpType = "fastHttpType"
+    OfficialHttpType HttpType = "officialHttpType"
+    
+    //请求环境 生成还是测试 沙箱 or 正式
+    SandBoxRequestEnv  RequestEnv = "sandbox"
+    OfficialRequestEnv RequestEnv = "official"
+    
+    DefaultTimeOut time.Duration = 10000000000
 )
