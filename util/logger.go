@@ -50,13 +50,15 @@ func InitLoggerMap() map[string]*zap.Logger {
 }
 
 func InitLogger(fileName string) *zap.Logger {
-    dayTime := strconv.Itoa(time.Now().Year()) + "-" + strconv.Itoa(int(time.Now().Month())) + "-" + strconv.Itoa(time.Now().Day())
+    if fileName == "" {
+        fileName = os.Getenv("PWD") + "/logs/" + strconv.Itoa(time.Now().Year()) + "-" + strconv.Itoa(int(time.Now().Month())) + "-" + strconv.Itoa(time.Now().Day()) + "/" + "MiPush.log"
+    }
     hook := lumberjack.Logger{
-        Filename:   "./logs/" + dayTime + "/" + fileName + ".log", // 日志文件路径
-        MaxSize:    128,                                           // 每个日志文件保存的最大尺寸 单位：M
-        MaxBackups: 30,                                            // 日志文件最多保存多少个备份
-        MaxAge:     7,                                             // 文件最多保存多少天
-        Compress:   true,                                          // 是否压缩
+        Filename:   fileName, // 日志文件路径
+        MaxSize:    128,      // 每个日志文件保存的最大尺寸 单位：M
+        MaxBackups: 30,       // 日志文件最多保存多少个备份
+        MaxAge:     7,        // 文件最多保存多少天
+        Compress:   true,     // 是否压缩
     }
     
     encoderConfig := zapcore.EncoderConfig{
