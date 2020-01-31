@@ -10,9 +10,13 @@ type HttpType string
 
 type RequestEnv string
 
+type ErrorCode int64
+
+type AccountType string
+
 const (
     SandboxHost          = "https://sandbox.xmpush.xiaomi.com"
-    OfficialHost       = "https://api.xmpush.xiaomi.com"
+    OfficialHost         = "https://api.xmpush.xiaomi.com"
     GlobalProductionHost = "https://api.xmpush.global.xiaomi.com"
     
     MessageRegIdURL   = "/v4/message/regid"
@@ -99,4 +103,16 @@ const (
     OfficialRequestEnv RequestEnv = "official"
     
     DefaultTimeOut time.Duration = 10000000000
+    
+    //error code
+    SuccessCode ErrorCode = 0
+    FailCode    ErrorCode = 0
+    
+    //account type
+    RegIdAccountType      AccountType = "regId"
+    AliasAccountType      AccountType = "alias"
+    TopicAccountType      AccountType = "topic"
+    MultiTopicAccountType AccountType = "multiTopic"
+    AllAccountType        AccountType = "all"
+    UserAccountType       AccountType = "userAccount"
 )
