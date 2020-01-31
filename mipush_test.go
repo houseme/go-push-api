@@ -37,7 +37,7 @@ func TestSendMessage(t *testing.T) {
     fmt.Println("timeStart ", timeStart)
     for i := 0; i < 1; i++ {
         fileName := "MiPush-" + strconv.Itoa(i%10)
-        fileName = "";
+        fileName = ""
         fmt.Println(fileName)
         logger := util.Logger(fileName)
         logger.Info("log 初始化成功")
