@@ -18,7 +18,8 @@ import (
     
     "go.uber.org/zap"
     
-    "github.com/houseme/mipush/util"
+    logger2 "github.com/houseme/mipush/util/logger"
+    "github.com/houseme/mipush/util/sugarLogger"
 )
 
 func TestSend(t *testing.T)  {
@@ -31,15 +32,15 @@ func TestSend(t *testing.T)  {
 }
 
 func TestSendMessage(t *testing.T) {
-    util.SetLevel(util.DebugLevel)
-    util.Info("测测谁---")
+    sugarLogger.SetLevel(sugarLogger.DebugLevel)
+    sugarLogger.Info("测测谁---")
     timeStart := time.Now().UnixNano()
     fmt.Println("timeStart ", timeStart)
     for i := 0; i < 1; i++ {
         fileName := "MiPush-" + strconv.Itoa(i%10)
         fileName = ""
         fmt.Println(fileName)
-        logger := util.Logger(fileName)
+        logger := logger2.Logger(fileName)
         logger.Info("log 初始化成功")
         logger.Info("无法获取网址 ",
             zap.String("url", "http://www.baidu.com"),

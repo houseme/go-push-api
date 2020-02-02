@@ -1,4 +1,4 @@
-package api
+package message
 
 import (
     "errors"
@@ -8,7 +8,7 @@ import (
     "github.com/houseme/mipush/builder"
     "github.com/houseme/mipush/miconst"
     "github.com/houseme/mipush/result"
-    "github.com/houseme/mipush/util"
+    "github.com/houseme/mipush/util/http"
 )
 
 //通过RegId群推
@@ -18,7 +18,7 @@ func SendMessageByRegIds(builder *builder.Builder, params builder.CommonParams) 
         return nil, errors.New("registration_id is required")
     }
     params.MiUrl = miconst.MessageRegIdURL
-    res, err := util.DoPost(builder, params)
+    res, err := http.DoPost(builder, params)
     if err != nil {
         return nil, err
     }
@@ -40,7 +40,7 @@ func SendMessageByRegAliasIds(builder *builder.Builder, params builder.CommonPar
         return nil, errors.New("alias is required")
     }
     params.MiUrl = miconst.MessageAliasURL
-    res, err := util.DoPost(builder, params)
+    res, err := http.DoPost(builder, params)
     if err != nil {
         return nil, err
     }
@@ -58,7 +58,7 @@ func SendMessageByRegAliasIds(builder *builder.Builder, params builder.CommonPar
 //给所有人发送消息
 func SendMessageAll(builder *builder.Builder, params builder.CommonParams) (*result.Result, error) {
     params.MiUrl = miconst.MessageAllURL
-    res, err := util.DoPost(builder, params)
+    res, err := http.DoPost(builder, params)
     var result = &result.Result{}
     var json = jsoniter.ConfigCompatibleWithStandardLibrary
     err = json.Unmarshal(res, result)

@@ -7,7 +7,7 @@
  * @Date: 2020/1/31 16:47
  *
  */
-package util
+package sugarLogger
 
 import (
     "fmt"

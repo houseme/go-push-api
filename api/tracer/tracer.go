@@ -1,4 +1,4 @@
-package api
+package tracer
 
 import (
     `github.com/houseme/mipush/builder`

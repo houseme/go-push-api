@@ -7,7 +7,7 @@
  * @Date: 2020/1/31 15:45
  *
  */
-package util
+package logger
 
 import (
     "fmt"
