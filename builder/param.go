@@ -15,7 +15,7 @@ import (
     "github.com/houseme/mipush/miconst"
 )
 
-type CommonParams struct {
+type Params struct {
     AppSecret string
     MiUrl     string
     HttpType  miconst.HttpType

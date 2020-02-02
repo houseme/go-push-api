@@ -12,7 +12,7 @@ import (
 )
 
 //通过RegId群推
-func SendMessageByRegIds(builder *builder.Builder, params builder.CommonParams) (*result.Result, error) {
+func SendMessageByRegIds(builder *builder.Builder, params builder.Params) (*result.Result, error) {
     
     if builder.RegistrationId == "" {
         return nil, errors.New("registration_id is required")
@@ -34,7 +34,7 @@ func SendMessageByRegIds(builder *builder.Builder, params builder.CommonParams) 
 }
 
 //通过Alias群推
-func SendMessageByRegAliasIds(builder *builder.Builder, params builder.CommonParams) (*result.Result, error) {
+func SendMessageByRegAliasIds(builder *builder.Builder, params builder.Params) (*result.Result, error) {
     
     if builder.Alias == "" {
         return nil, errors.New("alias is required")
@@ -56,7 +56,7 @@ func SendMessageByRegAliasIds(builder *builder.Builder, params builder.CommonPar
 }
 
 //给所有人发送消息
-func SendMessageAll(builder *builder.Builder, params builder.CommonParams) (*result.Result, error) {
+func SendMessageAll(builder *builder.Builder, params builder.Params) (*result.Result, error) {
     params.MiUrl = miconst.MessageAllURL
     res, err := http.DoPost(builder, params)
     var result = &result.Result{}

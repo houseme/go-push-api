@@ -6,6 +6,6 @@ import (
 )
 
 //通过RegId群推
-func GetMessageStatus(builder *builder.Builder, params builder.CommonParams) (*result.Result, error) {
+func GetMessageStatus(builder *builder.Builder, params builder.Params) (*result.Result, error) {
     return nil, nil
 }
