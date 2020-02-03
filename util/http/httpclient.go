@@ -15,7 +15,7 @@ import (
 )
 
 //do post request
-func DoPost(builder *builder.Builder, params builder.CommonParams) ([]byte, error) {
+func DoPost(builder *builder.Builder, params builder.Params) ([]byte, error) {
     if params.HttpType == miconst.FastHttpType {
         return DoPostByFastHttp(builder, params)
     }
@@ -23,7 +23,7 @@ func DoPost(builder *builder.Builder, params builder.CommonParams) ([]byte, erro
 }
 
 //do get request
-func DoGet(builder *builder.Builder, params builder.CommonParams) ([]byte, error) {
+func DoGet(builder *builder.Builder, params builder.Params) ([]byte, error) {
     if params.HttpType == miconst.FastHttpType {
         return DoGetByFastHttp(builder, params)
     }
@@ -39,7 +39,7 @@ func baseHost(env miconst.RequestEnv) string {
 }
 
 //FastHttp Do post request
-func DoPostByFastHttp(builder *builder.Builder, params builder.CommonParams) ([]byte, error) {
+func DoPostByFastHttp(builder *builder.Builder, params builder.Params) ([]byte, error) {
     
     form, errs := messageToFormForFastHttp(builder)
     if errs != nil {
@@ -76,7 +76,7 @@ func DoPostByFastHttp(builder *builder.Builder, params builder.CommonParams) ([]
 }
 
 //FastHttp Do get request
-func DoGetByFastHttp(builder *builder.Builder, params builder.CommonParams) ([]byte, error) {
+func DoGetByFastHttp(builder *builder.Builder, params builder.Params) ([]byte, error) {
     form, errs := messageToFormForFastHttp(builder)
     if errs != nil {
         fmt.Println("请求失败:", errs.Error())
@@ -111,7 +111,7 @@ func DoGetByFastHttp(builder *builder.Builder, params builder.CommonParams) ([]b
 }
 
 //Net Do post request
-func DoPostByNet(builder *builder.Builder, params builder.CommonParams) ([]byte, error) {
+func DoPostByNet(builder *builder.Builder, params builder.Params) ([]byte, error) {
     form, _ := messageToFormForNet(builder)
     param := ""
     if form != nil {
@@ -140,7 +140,7 @@ func DoPostByNet(builder *builder.Builder, params builder.CommonParams) ([]byte,
 }
 
 //Net Do get request
-func DoGetByNet(builder *builder.Builder, params builder.CommonParams) ([]byte, error) {
+func DoGetByNet(builder *builder.Builder, params builder.Params) ([]byte, error) {
     form, _ := messageToFormForNet(builder)
     param := ""
     if form != nil {

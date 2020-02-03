@@ -3,12 +3,11 @@ package message
 import (
     "errors"
     
-    "github.com/json-iterator/go"
-    
     "github.com/houseme/mipush/builder"
     "github.com/houseme/mipush/miconst"
     "github.com/houseme/mipush/result"
     "github.com/houseme/mipush/util/http"
+    "github.com/houseme/mipush/util/json"
 )
 
 //通过RegId群推
@@ -24,13 +23,7 @@ func SendMessageByRegIds(builder *builder.Builder, params builder.Params) (*resu
     }
     
     var result = &result.Result{}
-    var json = jsoniter.ConfigCompatibleWithStandardLibrary
-    err = json.Unmarshal(res, result)
-    if err != nil {
-        return result, err
-    }
-    
-    return result, nil
+    return json.ToJson(res, result)
 }
 
 //通过Alias群推
@@ -46,25 +39,26 @@ func SendMessageByRegAliasIds(builder *builder.Builder, params builder.Params) (
     }
     
     var result = &result.Result{}
-    var json = jsoniter.ConfigCompatibleWithStandardLibrary
-    err = json.Unmarshal(res, result)
-    if err != nil {
-        return result, err
-    }
-    
-    return result, nil
+    return json.ToJson(res, result)
 }
 
 //给所有人发送消息
 func SendMessageAll(builder *builder.Builder, params builder.Params) (*result.Result, error) {
     params.MiUrl = miconst.MessageAllURL
     res, err := http.DoPost(builder, params)
-    var result = &result.Result{}
-    var json = jsoniter.ConfigCompatibleWithStandardLibrary
-    err = json.Unmarshal(res, result)
     if err != nil {
-        return result, err
+        return nil, err
     }
-    
-    return result, nil
+    var result = &result.Result{}
+    return json.ToJson(res, result)
+}
+
+func SendMessageByRegUserAccounts(builder *builder.Builder, params builder.Params) (*result.Result, error) {
+    params.MiUrl = miconst.MessageAccountURL
+    res, err := http.DoPost(builder, params)
+    if err != nil {
+        return nil, err
+    }
+    var result = &result.Result{}
+    return json.ToJson(res, result)
 }
