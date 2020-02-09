@@ -11,10 +11,12 @@ func SendMessage(builder *builder.Builder, params builder.Params) (*result.Resul
     return message.SendMessageByRegIds(builder, params)
 }
 
+// 消息退回
 func RevokeMessage(builder *builder.Builder, params builder.Params) {
 
 }
 
+// 处理topic
 func DealTopic() {
 
 }

@@ -53,6 +53,7 @@ func SendMessageAll(builder *builder.Builder, params builder.Params) (*result.Re
     return json.ToJson(res, result)
 }
 
+//通过userAccount 发送消息
 func SendMessageByRegUserAccounts(builder *builder.Builder, params builder.Params) (*result.Result, error) {
     params.MiUrl = miconst.MessageAccountURL
     res, err := http.DoPost(builder, params)
