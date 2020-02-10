@@ -10,8 +10,8 @@
 package builder
 
 type Topic struct {
-    RegistrationId        string `json:"registration_id"`
-    Aliases               string `json:"aliases"`
+    RegistrationId        string `json:"registration_id,omitempty"`
+    Aliases               string `json:"aliases,omitempty"`
     UserAccount           string `json:"user_account,omitempty"`
     Topic                 string `json:"topic"`
     Topics                string `json:"topics"`
