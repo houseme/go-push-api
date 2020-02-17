@@ -14,6 +14,8 @@ type ErrorCode int64
 
 type AccountType string
 
+type Kind string
+
 const (
     SandboxHost          = "https://sandbox.xmpush.xiaomi.com"
     OfficialHost         = "https://api.xmpush.xiaomi.com"
@@ -108,11 +110,17 @@ const (
     SuccessCode ErrorCode = 0
     FailCode    ErrorCode = 0
     
-    //account type
+    //account type 发消息的账户类型
     RegIdAccountType      AccountType = "regId"
     AliasAccountType      AccountType = "alias"
     TopicAccountType      AccountType = "topic"
     MultiTopicAccountType AccountType = "multiTopic"
     AllAccountType        AccountType = "all"
     UserAccountType       AccountType = "userAccount"
+    
+    //种类 分为 channel message topic tracer 渠道 消息 主题 跟踪
+    ChannelKind Kind = "channel"
+    MessageKind Kind = "message"
+    TopicKind   Kind = "topic"
+    Tracer      Kind = "tracer"
 )
