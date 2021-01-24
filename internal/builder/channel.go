@@ -9,6 +9,7 @@
  */
 package builder
 
+// Channel .
 type Channel struct {
     ChannelId          string `json:"channel_id"`
     ChannelName        string `json:"channel_name"`

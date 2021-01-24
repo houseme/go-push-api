@@ -7,5 +7,11 @@
  * @Date: 2020/1/31 12:13
  *
  */
-package channel
+package api
 
+// Channel .
+var Channel = new(apiChannel)
+
+type apiChannel struct {
+
+}

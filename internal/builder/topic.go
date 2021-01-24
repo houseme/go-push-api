@@ -9,6 +9,7 @@
  */
 package builder
 
+// Topic .
 type Topic struct {
     RegistrationId        string `json:"registration_id,omitempty"`
     Aliases               string `json:"aliases,omitempty"`

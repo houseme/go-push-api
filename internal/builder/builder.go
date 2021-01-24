@@ -1,5 +1,6 @@
 package builder
 
+// Builder .
 type Builder struct {
     RegistrationId        string            `json:"registration_id"`
     Alias                 string            `json:"alias"`

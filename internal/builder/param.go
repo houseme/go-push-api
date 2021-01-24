@@ -12,13 +12,13 @@ package builder
 import (
     "time"
     
-    "github.com/houseme/mipush/miconst"
+    "github.com/houseme/mipush/internal/miconst"
 )
 
+// Params .
 type Params struct {
     AppSecret string
-    MiUrl     string
-    HttpType  miconst.HttpType
-    MiEnv     miconst.RequestEnv
-    TimeOut   time.Duration
+    MiUrl    string
+    MiEnv    miconst.RequestEnv
+    TimeOut  time.Duration
 }

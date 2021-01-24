@@ -6,8 +6,6 @@ import (
 
 type Region string
 
-type HttpType string
-
 type RequestEnv string
 
 type ErrorCode int64
@@ -95,10 +93,6 @@ const (
     RegionRussia Region = "Russia"
     RegionIndia  Region = "India"
     RegionOther  Region = "Other"
-    
-    //Http 类型
-    FastHttpType     HttpType = "fastHttpType"
-    OfficialHttpType HttpType = "officialHttpType"
     
     //请求环境 生成还是测试 沙箱 or 正式
     SandBoxRequestEnv  RequestEnv = "sandbox"
