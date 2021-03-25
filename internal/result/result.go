@@ -12,6 +12,6 @@ type Result struct {
 
 // Data .
 type Data struct {
-    BadRegIds string `json:"bad_regids"` //推送失败的cids
+    BadRegIds string `json:"badRegIds"` //推送失败的cids
     Id        string `json:"id"`         //消息的Id
 }

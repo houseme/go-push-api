@@ -11,11 +11,11 @@ package builder
 
 // Topic .
 type Topic struct {
-    RegistrationId        string `json:"registration_id,omitempty"`
+    RegistrationId        string `json:"registrationId,omitempty"`
     Aliases               string `json:"aliases,omitempty"`
-    UserAccount           string `json:"user_account,omitempty"`
+    UserAccount           string `json:"userAccount,omitempty"`
     Topic                 string `json:"topic"`
     Topics                string `json:"topics"`
     Category              string `json:"category"` //ios使用
-    RestrictedPackageName string `json:"restricted_package_name,omitempty"`
+    RestrictedPackageName string `json:"restrictedPackageName,omitempty"`
 }

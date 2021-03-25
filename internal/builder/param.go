@@ -17,8 +17,8 @@ import (
 
 // Params .
 type Params struct {
-    AppSecret string
-    MiUrl    string
-    MiEnv    miconst.RequestEnv
-    TimeOut  time.Duration
+    AppSecret string `json:"appSecret"`
+    MiUrl    string `json:"miUrl"`
+    MiEnv    miconst.RequestEnv `json:"miEnv"`
+    TimeOut  time.Duration `json:"timeOut"`
 }

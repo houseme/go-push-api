@@ -11,9 +11,9 @@ package builder
 
 // Channel .
 type Channel struct {
-    ChannelId          string `json:"channel_id"`
-    ChannelName        string `json:"channel_name"`
-    NotifyType         int32  `json:"notify_type"`
-    ChannelDescription string `json:"channel_description,omitempty"`
-    SoundUri           string `json:"sound_uri,omitempty"`
+    ChannelId          string `json:"channelId"`
+    ChannelName        string `json:"channelName"`
+    NotifyType         int32  `json:"notifyType"`
+    ChannelDescription string `json:"channelDescription,omitempty"`
+    SoundUri           string `json:"soundUri,omitempty"`
 }
