@@ -8,8 +8,9 @@ import (
 
 // Params .
 type Params struct {
-    AppSecret string `json:"appSecret"`
-    MiUrl    string `json:"miUrl"`
-    MiEnv    miconst.RequestEnv `json:"miEnv"`
-    TimeOut  time.Duration `json:"timeOut"`
+    AppSecret   string              `json:"appSecret"`
+    MiUrl       string              `json:"miUrl"`
+    MiEnv       miconst.RequestEnv  `json:"miEnv"`
+    TimeOut     time.Duration       `json:"timeOut"`
+    AccountType miconst.AccountType `json:"accountType"`
 }

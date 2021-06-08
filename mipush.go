@@ -8,7 +8,7 @@ import (
 
 // SendMessage 发送消息
 func SendMessage(builder *builder.Builder, params builder.Params) (*result.Result, error) {
-    return api.Message.SendMessageByRegIds(builder, params)
+    return api.Message.SendMessage(builder, params)
 }
 
 // RevokeMessage 消息退回

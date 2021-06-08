@@ -2,11 +2,11 @@ package builder
 
 // Builder .
 type Builder struct {
-    RegistrationId        string            `json:"registration_id"`
-    Alias                 string            `json:"alias"`
-    UserAccount           string            `json:"user_account"`
+    RegistrationId        []string            `json:"registration_id"`
+    Alias                 []string            `json:"alias"`
+    UserAccount           []string            `json:"user_account"`
     Topic                 string            `json:"topic"`
-    Topics                string            `json:"topics"`
+    Topics                []string            `json:"topics"`
     TopicOp               string            `json:"topic_op"`
     Payload               string            `json:"payload,omitempty"`
     RestrictedPackageName string            `json:"restricted_package_name,omitempty"`
