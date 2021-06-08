@@ -10,7 +10,7 @@ import (
     "github.com/houseme/mipush/internal/result"
 )
 
-var Message = new(apiMessage)
+var Message = apiMessage{}
 
 type apiMessage struct {
 }

@@ -39,3 +39,7 @@ func TestSendMessage(t *testing.T) {
     fmt.Println("end - start time :", endTime-timeStart)
     fmt.Println(os.Getenv("MI_PUSH_LOGGING_MODE"))
 }
+
+func TestToken(t *testing.T) {
+    
+}

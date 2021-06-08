@@ -17,7 +17,7 @@ import (
     "github.com/houseme/mipush/internal/result"
 )
 // Topic .
-var Topic = new(apiTopic)
+var Topic = apiTopic{}
 
 type apiTopic struct {
 }

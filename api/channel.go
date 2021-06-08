@@ -10,7 +10,7 @@
 package api
 
 // Channel .
-var Channel = new(apiChannel)
+var Channel = apiChannel{}
 
 type apiChannel struct {
 

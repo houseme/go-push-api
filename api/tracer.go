@@ -6,7 +6,7 @@ import (
 )
 
 // Tracer .
-var Tracer = new(apiTracer)
+var Tracer = apiTracer{}
 
 type apiTracer struct {
 }

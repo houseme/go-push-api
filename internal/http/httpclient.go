@@ -12,7 +12,7 @@ import (
     "github.com/houseme/mipush/internal/miconst"
 )
 
-var Client = new(httpClient)
+var Client = httpClient{}
 
 type httpClient struct {
 }

@@ -101,10 +101,12 @@ const (
     DefaultTimeOut time.Duration = 10000000000
     
     //error code
+    
     SuccessCode ErrorCode = 0
     FailCode    ErrorCode = 0
     
     //account type 发消息的账户类型
+    
     RegIdAccountType      AccountType = "regId"
     AliasAccountType      AccountType = "alias"
     TopicAccountType      AccountType = "topic"

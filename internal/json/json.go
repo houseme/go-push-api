@@ -1,12 +1,3 @@
-/**
- * @Project: mipush
- * @Author: qun
- * @Description:
- * @File: json
- * @Version: 1.0.0
- * @Date: 2020/2/3 09:06
- *
- */
 package json
 
 import (
