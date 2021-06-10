@@ -29,8 +29,8 @@ func (hc *httpClient) baseHost(env miconst.RequestEnv) string {
 func (hc *httpClient) DoPost(builder *builder.Builder, params builder.Params) ([]byte, error) {
     form, _ := hc.messageToForm(builder)
     
-    req, err := http.NewRequest("POST", fmt.Sprintf("%s", hc.baseHost(params.MiEnv)+params.MiUrl),
-        strings.NewReader(form.Encode()))
+    req, err := http.NewRequest("POST", fmt.Sprintf("%s", hc.baseHost(params.MiEnv)+params.MiUrl), strings.NewReader(form.Encode()))
+    
     
     if err != nil {
         return nil, err
