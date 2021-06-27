@@ -1,18 +1,18 @@
 package mipush
 
 import (
-    "github.com/houseme/mipush/api"
-    "github.com/houseme/mipush/internal/builder"
-    "github.com/houseme/mipush/internal/result"
+	"github.com/houseme/go-push-api/internal/mi"
+	"github.com/houseme/go-push-api/internal/mi/api"
+	"github.com/houseme/go-push-api/internal/mi/builder"
 )
 
 // SendMessage 发送消息
-func SendMessage(builder *builder.Builder, params builder.Params) (*result.Result, error) {
-    return api.Message.SendMessage(builder, params)
+func SendMessage(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	return api.Message.SendMessage(builder, params)
 }
 
 // RevokeMessage 消息退回
-func RevokeMessage(builder *builder.Builder, params builder.Params) {
+func RevokeMessage(builder *builder.Builder, params mi.Params) {
 
 }
 
