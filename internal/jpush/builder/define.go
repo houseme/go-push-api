@@ -47,33 +47,49 @@ const (
 	// PlatformIOS .
 	PlatformIOS TypePlatform = "ios"
 	// PlatformWinPhone .
-	PlatformWinPhone    TypePlatform = "winphone"
-	ALL                 string       = "all"
-	ALIAS               string       = "alias"
-	ALERT               string       = "alert"
-	AUDIENCE            string       = "audience"
-	ApnsProduction      string       = "apns_production"
-	BuilderID           string       = "builder_id"
-	ContentType         string       = "content_type"
-	EXTRAS              string       = "extras"
-	IosBadge            string       = "badge"
-	IosSound            string       = "sound"
-	IosContentAvailable string       = "content-available"
-	MaxIosLength        int          = 220
-	MaxContentLength    int          = 1200
-	MESSAGE             string       = "message"
-	MsgContent          string       = "msg_content"
-	NOTIFICATION        string       = "notification"
-	OverrideMsgID       string       = "override_msg_id"
-	OPTIONS             string       = "options"
-	PLATFORM            string       = "platform"
-	SENDNO              string       = "sendno"
-	TAG                 string       = "tag"
-	TagAnd              string       = "tag_and"
-	TITLE               string       = "title"
-	TTL                 string       = "time_to_live"
-	REGISTRATION        string       = "registration_id"
-	WpOpenPage          string       = "_open_page"
+	PlatformWinPhone TypePlatform = "winphone"
+	// ALL .
+	ALL string = "all"
+	// ALIAS .
+	ALIAS string = "alias"
+	// ALERT .
+	ALERT string = "alert"
+	// AUDIENCE .
+	AUDIENCE string = "audience"
+	// ApnsProduction is the apns production.
+	ApnsProduction string = "apns_production"
+	// BuilderID .
+	BuilderID string = "builder_id"
+	// ContentType .
+	ContentType string = "content_type"
+	// EXTRAS .
+	EXTRAS string = "extras"
+	// IosBadge .
+	IosBadge string = "badge"
+	// IosSound .
+	IosSound string = "sound"
+	// IosContentAvailable .
+	IosContentAvailable string = "content-available"
+	// MaxIosLength .
+	MaxIosLength int = 220
+	// MaxContentLength of the message.
+	MaxContentLength int = 1200
+	// MESSAGE .
+	MESSAGE string = "message"
+	// MsgContent .
+	MsgContent string = "msg_content"
+	// NOTIFICATION .
+	NOTIFICATION  string = "notification"
+	OverrideMsgID string = "override_msg_id"
+	OPTIONS       string = "options"
+	PLATFORM      string = "platform"
+	SENDNO        string = "sendno"
+	TAG           string = "tag"
+	TagAnd        string = "tag_and"
+	TITLE         string = "title"
+	TTL           string = "time_to_live"
+	REGISTRATION  string = "registration_id"
+	WpOpenPage    string = "_open_page"
 )
 
 // Platform .
@@ -390,7 +406,7 @@ func (vm *PushPayload) ToJSONString() (string, error) {
 
 	var length int
 	if ntf := (*vm)[NOTIFICATION]; ntf != nil {
-		if n := ntf.(*Notification); n != nil {
+		if n, _ := ntf.(*Notification); n != nil {
 			if ios := (*n)[string(PlatformIOS)]; ios != nil {
 				if b, e := json.Marshal(ios); e != nil || len(b) > MaxIosLength {
 					return "", fmt.Errorf("invalidate ios notification")

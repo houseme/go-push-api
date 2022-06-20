@@ -22,11 +22,14 @@ type apiMessage struct {
 
 // SendMessage .
 func (a *apiMessage) SendMessage(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	var buffer bytes.Buffer
+	var (
+		buffer bytes.Buffer
+		err    error
+	)
 	if params.MiEnv == mi.SandBoxRequestEnv {
-		buffer.WriteString(mi.SandboxHost)
+		_, _ = buffer.WriteString(mi.SandboxHost)
 	} else {
-		buffer.WriteString(mi.OfficialHost)
+		_, _ = buffer.WriteString(mi.OfficialHost)
 	}
 
 	form := &url.Values{}
@@ -59,32 +62,32 @@ func (a *apiMessage) SendMessage(builder *builder.Builder, params mi.Params) (*m
 	header.Add("Authorization", "key=%s"+params.AppSecret)
 
 	switch params.AccountType {
-	case mi.RegIdAccountType:
-		buffer.WriteString(mi.MessageRegIDURL)
+	case mi.RegIDAccountType:
+		_, _ = buffer.WriteString(mi.MessageRegIDURL)
 		if len(builder.RegistrationID) == 0 {
 			return nil, errors.New("registration_id is required")
 		}
 		header.Add("registration_id", strings.Join(builder.RegistrationID, ","))
 	case mi.AliasAccountType:
-		buffer.WriteString(mi.MessageAliasURL)
+		_, _ = buffer.WriteString(mi.MessageAliasURL)
 		if len(builder.Alias) == 0 {
 			return nil, errors.New("registration_id is required")
 		}
 		header.Add("registration_id", strings.Join(builder.Alias, ","))
 	case mi.UserAccountType:
-		buffer.WriteString(mi.MessageAccountURL)
+		_, _ = buffer.WriteString(mi.MessageAccountURL)
 		if len(builder.Alias) == 0 {
 			return nil, errors.New("registration_id is required")
 		}
 		header.Add("user_account", strings.Join(builder.UserAccount, ","))
 	case mi.TopicAccountType:
-		buffer.WriteString(mi.MessageTopicURL)
+		_, _ = buffer.WriteString(mi.MessageTopicURL)
 		if len(builder.Alias) == 0 {
 			return nil, errors.New("topic is required")
 		}
 		header.Add("topic", builder.Topic)
 	default:
-		buffer.WriteString(mi.MessageAllURL)
+		_, _ = buffer.WriteString(mi.MessageAllURL)
 	}
 
 	req, err := http.NewRequest("POST", buffer.String(), strings.NewReader(form.Encode()))
@@ -105,4 +108,43 @@ func (a *apiMessage) SendMessage(builder *builder.Builder, params mi.Params) (*m
 		return nil, err
 	}
 	return mi.ToJSON(body)
+}
+
+// RevokeMessage revoke message
+func (a *apiMessage) RevokeMessage(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	var buffer bytes.Buffer
+	if params.MiEnv == mi.SandBoxRequestEnv {
+		_, _ = buffer.WriteString(mi.SandboxHost)
+	} else {
+		_, _ = buffer.WriteString(mi.OfficialHost)
+	}
+	_, _ = buffer.WriteString(mi.MessageAliasRevokeURL)
+	form := &url.Values{}
+	form.Add("restricted_package_name", builder.RestrictedPackageName)
+	form.Add("notify_id", fmt.Sprintf("%d", builder.NotifyID))
+	header := make(http.Header)
+	header.Set("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
+	header.Add("Authorization", "key=%s"+params.AppSecret)
+	req, err := http.NewRequest("POST", buffer.String(), strings.NewReader(form.Encode()))
+	if err != nil {
+		return nil, err
+	}
+	var client = &http.Client{
+		Timeout: 5 * time.Second,
+	}
+	res, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+	return mi.ToJSON(body)
+}
+
+// DealTopic deal topic
+func (a *apiMessage) DealTopic(builder *builder.Builder, params mi.Params) error {
+	return errors.New("not implement")
 }

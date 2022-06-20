@@ -8,7 +8,7 @@ func (u *Users) SetID(userID uint) *Users {
 
 // Add 添加数据
 func (u *Users) Add(types ...*userType) *Users {
-	add := map[string]any{}
+	add := map[string]interface{}{}
 	for _, data := range types {
 		for k, v := range *data {
 			add[k] = v
@@ -20,7 +20,7 @@ func (u *Users) Add(types ...*userType) *Users {
 
 // Set 设置数据
 func (u *Users) Set(types ...*userType) *Users {
-	set := map[string]any{}
+	set := map[string]interface{}{}
 	for _, data := range types {
 		for k, v := range *data {
 			u.Data[k] = v
@@ -32,7 +32,7 @@ func (u *Users) Set(types ...*userType) *Users {
 
 // Del 删除数据
 func (u *Users) Del(types ...*userType) *Users {
-	del := map[string]any{}
+	del := map[string]interface{}{}
 	for _, data := range types {
 		for k, v := range *data {
 			u.Data[k] = v
@@ -47,12 +47,12 @@ func (u *Users) Send() error {
 	return Request("v1/sent/user/opt", u.Key, u.Secret, u.Data)
 }
 
-type userType map[string]any
+type userType map[string]interface{}
 
 // UserTag 渠道标签
 func UserTag(channelKey string, data ...string) *userType {
 	return &userType{
-		"tag": map[string]any{
+		"tag": map[string]interface{}{
 			channelKey: data,
 		},
 	}
@@ -61,7 +61,7 @@ func UserTag(channelKey string, data ...string) *userType {
 // UserPhone 渠道手机号
 func UserPhone(channelKey string, data ...string) *userType {
 	return &userType{
-		"phone": map[string]any{
+		"phone": map[string]interface{}{
 			channelKey: data,
 		},
 	}
@@ -70,7 +70,7 @@ func UserPhone(channelKey string, data ...string) *userType {
 // UserEmail 渠道邮箱
 func UserEmail(channelKey string, data ...string) *userType {
 	return &userType{
-		"email": map[string]any{
+		"email": map[string]interface{}{
 			channelKey: data,
 		},
 	}
@@ -79,25 +79,25 @@ func UserEmail(channelKey string, data ...string) *userType {
 // UserApp app类型
 func UserApp(instance string, data ...string) *userType {
 	return &userType{
-		"app": map[string]any{
+		"app": map[string]interface{}{
 			instance: data,
 		},
 	}
 }
 
-// UserWechatOa 微信公众号
-func UserWechatOa(instance string, data string) *userType {
-	return &userType{
-		"wechatoa": map[string]any{
-			instance: data,
-		},
-	}
-}
-
-// UserWechatMp 微信小程序
+// UserWechatMp 微信公众号
 func UserWechatMp(instance string, data string) *userType {
 	return &userType{
-		"wechatmp": map[string]any{
+		"wechatoa": map[string]interface{}{
+			instance: data,
+		},
+	}
+}
+
+// UserWechatLite 微信小程序
+func UserWechatLite(instance string, data string) *userType {
+	return &userType{
+		"wechatmp": map[string]interface{}{
 			instance: data,
 		},
 	}
@@ -106,21 +106,21 @@ func UserWechatMp(instance string, data string) *userType {
 // UserAlipayLife 支付宝生活号
 func UserAlipayLife(instance string, data string) *userType {
 	return &userType{
-		"alipaylife": map[string]any{
+		"alipaylife": map[string]interface{}{
 			instance: data,
 		},
 	}
 }
 
-// UserDingtalkCC 钉钉
-func UserDingtalkCC(data string) *userType {
+// UserDingTalkCC 钉钉
+func UserDingTalkCC(data string) *userType {
 	return &userType{
 		"dingtalkcc": data,
 	}
 }
 
-// UserWechatWk 企业微星
-func UserWechatWk(data string) *userType {
+// UserWechatWork 企业微星
+func UserWechatWork(data string) *userType {
 	return &userType{
 		"wechatwk": data,
 	}

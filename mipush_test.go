@@ -31,6 +31,7 @@ func TestSendMessage(t *testing.T) {
 	fmt.Println("endTime ", endTime)
 	fmt.Println("end - start time :", endTime-timeStart)
 	fmt.Println(os.Getenv("MI_PUSH_LOGGING_MODE"))
+	t.Log("timeStart ", timeStart)
 }
 
 func TestToken(t *testing.T) {
@@ -46,7 +47,10 @@ func TestToken(t *testing.T) {
       "followers": 109
     },
     "avatars": [
-      { "url": "https://avatars1.githubusercontent.com/u/14009?v=3&s=460", "type": "thumbnail" }
+      {
+		"url": "https://avatars1.githubusercontent.com/u/14009?v=3&s=460",
+		"type": "thumbnail"
+		}
     ]
   },
   "company": {

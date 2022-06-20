@@ -3,7 +3,7 @@ package jums
 import "github.com/gofrs/uuid"
 
 // ToData 发送消息对象
-type ToData map[string]any
+type ToData map[string]interface{}
 
 // To 发送消息对象
 func (u *Message) To(datas ...*ToData) *Message {
@@ -16,7 +16,7 @@ func (u *Message) To(datas ...*ToData) *Message {
 }
 
 // MsgData 消息内容
-type MsgData map[string]any
+type MsgData map[string]interface{}
 
 // Content 发送消息内容
 func (u *Message) Content(datas ...*MsgData) *Message {
@@ -57,7 +57,7 @@ func ToSegment(aud []string) *ToData {
 // ToApp App
 func ToApp(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_app": []map[string]any{
+		"aud_app": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -66,10 +66,10 @@ func ToApp(instance string, aud []string) *ToData {
 	}
 }
 
-// ToWechatoa 微信公众号
-func ToWechatoa(instance string, aud []string) *ToData {
+// ToWechatMp 微信公众号
+func ToWechatMp(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_wechatoa": []map[string]any{
+		"aud_wechatoa": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -78,10 +78,10 @@ func ToWechatoa(instance string, aud []string) *ToData {
 	}
 }
 
-// ToWechatmp 微信小程序
-func ToWechatmp(instance string, aud []string) *ToData {
+// ToWechatLite 微信小程序
+func ToWechatLite(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_wechatmp": []map[string]any{
+		"aud_wechatmp": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -93,7 +93,7 @@ func ToWechatmp(instance string, aud []string) *ToData {
 // ToSms 短信
 func ToSms(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_sms": []map[string]any{
+		"aud_sms": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -105,7 +105,7 @@ func ToSms(instance string, aud []string) *ToData {
 // ToEmail 邮件
 func ToEmail(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_email": []map[string]any{
+		"aud_email": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -117,7 +117,7 @@ func ToEmail(instance string, aud []string) *ToData {
 // ToAlipayLife 支付宝生活号
 func ToAlipayLife(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_alipay_life": []map[string]any{
+		"aud_alipay_life": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -126,10 +126,10 @@ func ToAlipayLife(instance string, aud []string) *ToData {
 	}
 }
 
-// ToDingtalkCC 钉钉工作
-func ToDingtalkCC(instance string, aud []string) *ToData {
+// ToDingTalkCC 钉钉工作
+func ToDingTalkCC(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_dingtalk_cc": []map[string]any{
+		"aud_dingtalk_cc": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -138,10 +138,10 @@ func ToDingtalkCC(instance string, aud []string) *ToData {
 	}
 }
 
-// ToWechatwk 企业微信
-func ToWechatwk(instance string, aud []string) *ToData {
+// ToWechatWork 企业微信
+func ToWechatWork(instance string, aud []string) *ToData {
 	return &ToData{
-		"aud_wechatwk": []map[string]any{
+		"aud_wechatwk": []map[string]interface{}{
 			{
 				"instance": instance,
 				"data":     aud,
@@ -154,26 +154,26 @@ func ToWechatwk(instance string, aud []string) *ToData {
 func MsgApp(msg string, url string) *MsgData {
 	id, _ := uuid.NewV4()
 	return &MsgData{
-		"msg_app": []map[string]any{
+		"msg_app": []map[string]interface{}{
 			{
 				"cid":      id.String(),
 				"platform": "all",
-				"notification": map[string]any{
-					"android": map[string]any{
+				"notification": map[string]interface{}{
+					"android": map[string]interface{}{
 						"alert": msg,
-						"extras": map[string]any{
+						"extras": map[string]interface{}{
 							"url": url,
 						},
 					},
-					"ios": map[string]any{
+					"ios": map[string]interface{}{
 						"alert": msg,
-						"extras": map[string]any{
+						"extras": map[string]interface{}{
 							"url": url,
 						},
 					},
-					"quick": map[string]any{
+					"quick": map[string]interface{}{
 						"alert": msg,
-						"extras": map[string]any{
+						"extras": map[string]interface{}{
 							"url": url,
 						},
 					},
@@ -183,27 +183,29 @@ func MsgApp(msg string, url string) *MsgData {
 	}
 }
 
-type WechatoaData struct {
+// WechatMpData 微信公众号消息
+type WechatMpData struct {
 	Value string `json:"value"`
 	Color string `json:"color"`
 }
 
-type WechatMiniprogram struct {
-	AppId    string `json:"app_id"`
+// WechatMiniProgram 小程序参数消息
+type WechatMiniProgram struct {
+	AppID    string `json:"app_id"`
 	PagePath string `json:"page_path"`
 }
 
-// MsgWechatoa 公众号消息
-func MsgWechatoa(types uint, tplId string, data map[string]WechatoaData, url string, minis ...WechatMiniprogram) *MsgData {
-	var mini WechatMiniprogram
+// MsgWechatMp 公众号消息
+func MsgWechatMp(types uint, tplID string, data map[string]WechatMpData, url string, minis ...WechatMiniProgram) *MsgData {
+	var mini WechatMiniProgram
 	if len(minis) > 0 {
 		mini = minis[0]
 	}
 	return &MsgData{
-		"msg_wechatoa": []map[string]any{
+		"msg_wechatoa": []map[string]interface{}{
 			{
 				"type":        types,
-				"template_id": tplId,
+				"template_id": tplID,
 				"url":         url,
 				"miniprogram": mini,
 				"data":        data,
@@ -212,20 +214,21 @@ func MsgWechatoa(types uint, tplId string, data map[string]WechatoaData, url str
 	}
 }
 
-type WechatmpData struct {
+// WechatLiteData 小程序消息
+type WechatLiteData struct {
 	Value string `json:"value"`
 }
 
-// MsgWechatmp 小程序消息
-func MsgWechatmp(tplId string, data map[string]WechatmpData, pages ...string) *MsgData {
+// MsgWechatLite 小程序消息
+func MsgWechatLite(tplID string, data map[string]WechatLiteData, pages ...string) *MsgData {
 	var page string
 	if len(pages) > 0 {
 		page = pages[0]
 	}
 	return &MsgData{
-		"msg_wechatmp": []map[string]any{
+		"msg_wechatmp": []map[string]interface{}{
 			{
-				"template_id":       tplId,
+				"template_id":       tplID,
 				"page":              page,
 				"miniprogram_state": "formal",
 				"data":              data,
@@ -235,12 +238,12 @@ func MsgWechatmp(tplId string, data map[string]WechatmpData, pages ...string) *M
 }
 
 // MsgSms 短信消息
-func MsgSms(signId string, tempId int, params map[string]any) *MsgData {
+func MsgSms(signID string, tempID int, params map[string]interface{}) *MsgData {
 	return &MsgData{
-		"msg_sms": []map[string]any{
+		"msg_sms": []map[string]interface{}{
 			{
-				"sign_id":   signId,
-				"temp_id":   tempId,
+				"sign_id":   signID,
+				"temp_id":   tempID,
 				"temp_para": params,
 			},
 		},
@@ -254,7 +257,7 @@ func MsgEmail(title string, content string, files ...[]string) *MsgData {
 		file = files[0]
 	}
 	return &MsgData{
-		"msg_email": []map[string]any{
+		"msg_email": []map[string]interface{}{
 			{
 				"subject": title,
 				"text":    content,
@@ -264,16 +267,17 @@ func MsgEmail(title string, content string, files ...[]string) *MsgData {
 	}
 }
 
+// AlipayData 支付宝生活号数据
 type AlipayData struct {
 	Value string `json:"value"`
 	Color string `json:"color"`
 }
 
 // MsgAlipayLife 阿里生活号
-func MsgAlipayLife(tempId int, headColor string, url string, desc string, data map[string]AlipayData) *MsgData {
+func MsgAlipayLife(tempID int, headColor string, url string, desc string, data map[string]AlipayData) *MsgData {
 	result := MsgData{
-		"template_id": tempId,
-		"context": map[string]any{
+		"template_id": tempID,
+		"context": map[string]interface{}{
 			"head_color":  headColor,
 			"url":         url,
 			"action_name": desc,
@@ -284,18 +288,18 @@ func MsgAlipayLife(tempId int, headColor string, url string, desc string, data m
 	}
 
 	return &MsgData{
-		"msg_wechatwk": []map[string]any{
+		"msg_wechatwk": []map[string]interface{}{
 			result,
 		},
 	}
 }
 
-// MsgDingtalkCC 钉钉通知
-func MsgDingtalkCC(content string) *MsgData {
+// MsgDingTalkCC 钉钉通知
+func MsgDingTalkCC(content string) *MsgData {
 	return &MsgData{
-		"msg_dingtalk_cc": []map[string]any{
+		"msg_dingtalk_cc": []map[string]interface{}{
 			{
-				"msg": map[string]any{
+				"msg": map[string]interface{}{
 					"msgtype": "text",
 					"text":    content,
 				},
@@ -307,81 +311,91 @@ func MsgDingtalkCC(content string) *MsgData {
 type wechatWkType string
 
 const (
-	WechatWkText  wechatWkType = "text"
+	// WechatWkText 文本消息
+	WechatWkText wechatWkType = "text"
+	// WechatWkImage 图片消息
 	WechatWkImage wechatWkType = "image"
-	WechatWkFile  wechatWkType = "file"
-	WechatWkNews  wechatWkType = "news"
-	WechatWkMpews wechatWkType = "mpnews"
+	// WechatWkFile 链接消息
+	WechatWkFile wechatWkType = "file"
+	// WechatWkNews 图文消息
+	WechatWkNews wechatWkType = "news"
+	// WechatWkMpNews 图文消息
+	WechatWkMpNews wechatWkType = "mpnews"
 )
 
+// WechatWkConfigText 文本消息
 type WechatWkConfigText struct {
 	Content string `json:"content"`
 }
 
+// WechatWkConfigImage 图片
 type WechatWkConfigImage struct {
-	MediaId string `json:"media_id"`
+	MediaID string `json:"media_id"`
 }
 
+// WechatWkConfigFile 图文消息
 type WechatWkConfigFile struct {
-	MediaId string `json:"media_id"`
+	MediaID string `json:"media_id"`
 }
 
+// WechatWkConfigNews 图文消息
 type WechatWkConfigNews struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
-	Url         string `json:"url"`
-	Picurl      string `json:"picurl"`
+	URL         string `json:"url"`
+	PicURL      string `json:"picurl"`
 }
 
-type WechatWkConfigMpnews struct {
-	thumbMediaId     string `json:"thumb_media_id"`
+// WechatWkConfigMpNews 图文消息
+type WechatWkConfigMpNews struct {
+	ThumbMediaID     string `json:"thumb_media_id"`
 	Title            string `json:"title"`
 	Content          string `json:"content"`
 	Digest           string `json:"digest"`
 	Author           string `json:"author"`
-	ContentSourceUrl string `json:"content_source_url"`
+	ContentSourceURL string `json:"content_source_url"`
 }
 
-// MsgWechatwk 企业微信
-func MsgWechatwk(config any) *MsgData {
-	result := map[string]any{
+// MsgWechatWork 企业微信
+func MsgWechatWork(config interface{}) *MsgData {
+	result := map[string]interface{}{
 		"enable_duplicate_check":   1,
 		"duplicate_check_interval": 1800,
 	}
 	switch (interface{})(config).(type) {
 	case WechatWkConfigText:
-		data := config.(WechatWkConfigText)
+		data, _ := config.(WechatWkConfigText)
 		result["msgtype"] = "text"
-		result["text"] = map[string]any{
+		result["text"] = map[string]interface{}{
 			"content": data.Content,
 		}
 	case WechatWkConfigImage:
-		data := config.(WechatWkConfigImage)
+		data, _ := config.(WechatWkConfigImage)
 		result["msgtype"] = "image"
-		result["image"] = map[string]any{
-			"media_id": data.MediaId,
+		result["image"] = map[string]interface{}{
+			"media_id": data.MediaID,
 		}
 	case WechatWkConfigFile:
-		data := config.(WechatWkConfigFile)
+		data, _ := config.(WechatWkConfigFile)
 		result["msgtype"] = "file"
-		result["file"] = map[string]any{
-			"media_id": data.MediaId,
+		result["file"] = map[string]interface{}{
+			"media_id": data.MediaID,
 		}
 	case []WechatWkConfigNews:
-		data := config.([]WechatWkConfigNews)
+		data, _ := config.([]WechatWkConfigNews)
 		result["msgtype"] = "news"
-		result["news"] = map[string]any{
+		result["news"] = map[string]interface{}{
 			"articles": data,
 		}
-	case []WechatWkConfigMpnews:
-		data := config.([]WechatWkConfigNews)
+	case []WechatWkConfigMpNews:
+		data, _ := config.([]WechatWkConfigNews)
 		result["msgtype"] = "mpnews"
-		result["mpnews"] = map[string]any{
+		result["mpnews"] = map[string]interface{}{
 			"articles": data,
 		}
 	}
 	return &MsgData{
-		"msg_wechatwk": []map[string]any{
+		"msg_wechatwk": []map[string]interface{}{
 			result,
 		},
 	}

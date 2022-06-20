@@ -31,7 +31,7 @@ func New(config Config) *Jums {
 type Message struct {
 	Key    string
 	Secret string
-	Data   map[string]any
+	Data   map[string]interface{}
 }
 
 // Message 消息模式
@@ -39,7 +39,7 @@ func (u *Jums) Message() *Message {
 	return &Message{
 		Key:    u.config.Key,
 		Secret: u.config.Secret,
-		Data:   map[string]any{},
+		Data:   map[string]interface{}{},
 	}
 }
 
@@ -49,7 +49,7 @@ type Users struct {
 	Secret        string
 	AccountKey    string
 	AccountSecret string
-	Data          map[string]any
+	Data          map[string]interface{}
 	UserID        uint
 }
 
@@ -60,7 +60,7 @@ func (u *Jums) User() *Users {
 		Secret:        u.config.Secret,
 		AccountKey:    u.config.AccountKey,
 		AccountSecret: u.config.AccountSecret,
-		Data:          map[string]any{},
+		Data:          map[string]interface{}{},
 	}
 }
 
@@ -73,7 +73,7 @@ func (u *Jums) UserDel(userid ...uint) error {
 }
 
 // Request 请求数据
-func Request(url string, key string, secret string, data any) error {
+func Request(url string, key string, secret string, data interface{}) error {
 	var err error
 	_, body, errs := fiber.Post("https://api.ums.jiguang.cn/"+url).Debug().BasicAuth(key, secret).JSON(data).Bytes()
 	if len(errs) > 0 {

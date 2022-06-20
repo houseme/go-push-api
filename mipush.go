@@ -12,11 +12,11 @@ func SendMessage(builder *builder.Builder, params mi.Params) (*mi.Result, error)
 }
 
 // RevokeMessage 消息退回
-func RevokeMessage(builder *builder.Builder, params mi.Params) {
-
+func RevokeMessage(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	return api.Message.RevokeMessage(builder, params)
 }
 
 // DealTopic 处理topic
-func DealTopic() {
-
+func DealTopic() error {
+	return api.Message.DealTopic()
 }

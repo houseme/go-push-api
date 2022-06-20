@@ -28,7 +28,7 @@ func (hc *httpClient) baseHost(env mi.RequestEnv) string {
 
 // DoPost Net Do post request
 func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte, error) {
-	form, _ := hc.messageToForm(builder)
+	form := hc.messageToForm(builder)
 
 	req, err := http.NewRequest("POST", hc.baseHost(params.MiEnv)+params.MiUrl, strings.NewReader(form.Encode()))
 
@@ -58,7 +58,7 @@ func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte
 
 // DoGet Net Do get request
 func (hc *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte, error) {
-	form, _ := hc.messageToForm(builder)
+	form := hc.messageToForm(builder)
 
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s?%s", hc.baseHost(params.MiEnv)+params.MiUrl, form.Encode()), nil)
 
@@ -87,7 +87,7 @@ func (hc *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte,
 }
 
 // messageToForm 消息转表单，小米推送接口使用form表单提交
-func (hc *httpClient) messageToForm(builder *builder.Builder) (*url.Values, error) {
+func (hc *httpClient) messageToForm(builder *builder.Builder) *url.Values {
 	form := &url.Values{}
 	form.Add("restricted_package_name", builder.RestrictedPackageName)
 	form.Add("payload", builder.Payload)
