@@ -2,9 +2,18 @@ name: Go-Push-API-Action
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+    - main
+    - develop
+    - feature/**
+    - fix/**
+
   pull_request:
-    branches: [ "main" ]
+    branches: 
+    - main
+    - develop
+    - feature/**
+    - fix/**
     
 # Always force the use of Go modules
 env:
