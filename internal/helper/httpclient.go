@@ -9,9 +9,10 @@ import (
 	"time"
 
 	"github.com/houseme/go-push-api/internal/mi"
-	builder2 "github.com/houseme/go-push-api/internal/mi/builder"
+	"github.com/houseme/go-push-api/internal/mi/builder"
 )
 
+// Client 客户端
 var Client = httpClient{}
 
 type httpClient struct {
@@ -26,10 +27,10 @@ func (hc *httpClient) baseHost(env mi.RequestEnv) string {
 }
 
 // DoPost Net Do post request
-func (hc *httpClient) DoPost(builder *builder2.Builder, params mi.Params) ([]byte, error) {
+func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte, error) {
 	form, _ := hc.messageToForm(builder)
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s", hc.baseHost(params.MiEnv)+params.MiUrl), strings.NewReader(form.Encode()))
+	req, err := http.NewRequest("POST", hc.baseHost(params.MiEnv)+params.MiUrl, strings.NewReader(form.Encode()))
 
 	if err != nil {
 		return nil, err
@@ -56,7 +57,7 @@ func (hc *httpClient) DoPost(builder *builder2.Builder, params mi.Params) ([]byt
 }
 
 // DoGet Net Do get request
-func (hc *httpClient) DoGet(builder *builder2.Builder, params mi.Params) ([]byte, error) {
+func (hc *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte, error) {
 	form, _ := hc.messageToForm(builder)
 
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s?%s", hc.baseHost(params.MiEnv)+params.MiUrl, form.Encode()), nil)
@@ -73,14 +74,20 @@ func (hc *httpClient) DoGet(builder *builder2.Builder, params mi.Params) ([]byte
 	}
 
 	res, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
-	res.Body.Close()
+	if err != nil {
+		return nil, err
+	}
 
 	return body, nil
 }
 
 // messageToForm 消息转表单，小米推送接口使用form表单提交
-func (hc *httpClient) messageToForm(builder *builder2.Builder) (*url.Values, error) {
+func (hc *httpClient) messageToForm(builder *builder.Builder) (*url.Values, error) {
 	form := &url.Values{}
 	form.Add("restricted_package_name", builder.RestrictedPackageName)
 	form.Add("payload", builder.Payload)

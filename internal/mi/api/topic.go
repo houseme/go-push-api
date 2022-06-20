@@ -19,8 +19,8 @@ var Topic = apiTopic{}
 type apiTopic struct {
 }
 
-// SubscribeTopicByRegId 注册topic
-func (a *apiTopic) SubscribeTopicByRegId(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+// SubscribeTopicByRegID 注册topic
+func (a *apiTopic) SubscribeTopicByRegID(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
 	params.MiUrl = mi.MessageAllURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {

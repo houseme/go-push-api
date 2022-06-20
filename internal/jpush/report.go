@@ -66,7 +66,9 @@ func (jpc *ReportClient) GetReport(msgID ...int) (string, error) {
 				if err != nil {
 					return nil, err
 				}
-				c.SetDeadline(time.Now().Add(RwTimeout * time.Second))
+				if err = c.SetDeadline(time.Now().Add(RwTimeout * time.Second)); err != nil {
+					return nil, err
+				}
 				return c, nil
 			},
 		},

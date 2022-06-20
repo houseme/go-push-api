@@ -14,6 +14,7 @@ import (
 	"github.com/houseme/go-push-api/internal/mi/builder"
 )
 
+// Message .
 var Message = apiMessage{}
 
 type apiMessage struct {
@@ -59,11 +60,11 @@ func (a *apiMessage) SendMessage(builder *builder.Builder, params mi.Params) (*m
 
 	switch params.AccountType {
 	case mi.RegIdAccountType:
-		buffer.WriteString(mi.MessageRegIdURL)
-		if len(builder.RegistrationId) == 0 {
+		buffer.WriteString(mi.MessageRegIDURL)
+		if len(builder.RegistrationID) == 0 {
 			return nil, errors.New("registration_id is required")
 		}
-		header.Add("registration_id", strings.Join(builder.RegistrationId, ","))
+		header.Add("registration_id", strings.Join(builder.RegistrationID, ","))
 	case mi.AliasAccountType:
 		buffer.WriteString(mi.MessageAliasURL)
 		if len(builder.Alias) == 0 {
@@ -98,12 +99,10 @@ func (a *apiMessage) SendMessage(builder *builder.Builder, params mi.Params) (*m
 	if err != nil {
 		return nil, err
 	}
+	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
 	}
-	res.Body.Close()
-
 	return mi.ToJSON(body)
-
 }

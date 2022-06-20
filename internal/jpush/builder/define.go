@@ -42,10 +42,12 @@ type NamedValue map[string]interface{}
 type TypePlatform string
 
 const (
-	// PlatformAndroid 。
-	PlatformAndroid     TypePlatform = "android"
-	PlatformIos         TypePlatform = "ios"
-	PlatformWp          TypePlatform = "winphone"
+	// PlatformAndroid .
+	PlatformAndroid TypePlatform = "android"
+	// PlatformIOS .
+	PlatformIOS TypePlatform = "ios"
+	// PlatformWinPhone .
+	PlatformWinPhone    TypePlatform = "winphone"
 	ALL                 string       = "all"
 	ALIAS               string       = "alias"
 	ALERT               string       = "alert"
@@ -271,13 +273,13 @@ func (vn *Notification) AddAndroid(android *Android) *Notification {
 
 // AddIOS .
 func (vn *Notification) AddIOS(ios *iOS) *Notification {
-	(*vn)[string(PlatformIos)] = ios
+	(*vn)[string(PlatformIOS)] = ios
 	return vn
 }
 
 // AddWinPhone .
 func (vn *Notification) AddWinPhone(wp *WinPhone) *Notification {
-	(*vn)[string(PlatformWp)] = wp
+	(*vn)[string(PlatformWinPhone)] = wp
 	return vn
 }
 
@@ -389,26 +391,26 @@ func (vm *PushPayload) ToJSONString() (string, error) {
 	var length int
 	if ntf := (*vm)[NOTIFICATION]; ntf != nil {
 		if n := ntf.(*Notification); n != nil {
-			if ios := (*n)[string(PlatformIos)]; ios != nil {
+			if ios := (*n)[string(PlatformIOS)]; ios != nil {
 				if b, e := json.Marshal(ios); e != nil || len(b) > MaxIosLength {
 					return "", fmt.Errorf("invalidate ios notification")
 				}
 			}
 		}
 
-		if b, e := json.Marshal(ntf); e != nil {
+		b, e := json.Marshal(ntf)
+		if e != nil {
 			return "", e
-		} else {
-			length += len(b)
 		}
+		length += len(b)
 	}
 
 	if msg := (*vm)[MESSAGE]; msg != nil {
-		if b, e := json.Marshal(msg); e != nil {
+		b, e := json.Marshal(msg)
+		if e != nil {
 			return "", e
-		} else {
-			length += len(b)
 		}
+		length += len(b)
 	}
 
 	if length > MaxContentLength {

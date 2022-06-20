@@ -1,11 +1,4 @@
-//* @Project: go-push-api
-// * @Author: qun
-// * @Description:
-// * @File: mipush_test
-// * @Version: 1.0.0
-// * @Date: 2020/1/31 21:55
-
-package mipush
+package pushapi
 
 import (
 	"fmt"
@@ -13,11 +6,13 @@ import (
 	"strconv"
 	"testing"
 	"time"
+
+	"github.com/buger/jsonparser"
 )
 
 func TestSend(t *testing.T) {
 	for _, v := range os.Environ() {
-		//输出系统所有环境变量的值
+		// 输出系统所有环境变量的值
 		fmt.Println(v)
 		t.Log("os env", v)
 	}
@@ -39,5 +34,27 @@ func TestSendMessage(t *testing.T) {
 }
 
 func TestToken(t *testing.T) {
+	data := []byte(`{
+  "person": {
+    "name": {
+      "first": "Leonid",
+      "last": "Bugaev",
+      "fullName": "Leonid Bugaev"
+    },
+    "github": {
+      "handle": "buger",
+      "followers": 109
+    },
+    "avatars": [
+      { "url": "https://avatars1.githubusercontent.com/u/14009?v=3&s=460", "type": "thumbnail" }
+    ]
+  },
+  "company": {
+    "name": "Acme"
+  }
+}`)
+
+	// You can specify key path by providing arguments to Get function
+	t.Log(jsonparser.Get(data, "person", "name", "fullName"))
 
 }

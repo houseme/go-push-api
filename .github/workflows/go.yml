@@ -9,7 +9,7 @@ on:
     - fix/**
 
   pull_request:
-    branches: 
+    branches:
     - main
     - develop
     - feature/**
