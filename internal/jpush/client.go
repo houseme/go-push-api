@@ -11,14 +11,6 @@ import (
 	"github.com/houseme/go-push-api/internal/jpush/builder"
 )
 
-// @Project: go-push-api
-// @Author: houseme
-// @Description:
-// @File: client
-// @Version: 1.0.0
-// @Date: 2021/6/29 11:14
-// @Package jpush
-
 const (
 	// KeyLength .
 	KeyLength = 24
@@ -78,11 +70,12 @@ func (jc *Client) Push(po *builder.PushPayload) (string, error) {
 	}
 
 	resp, e := c.Do(req)
-	defer resp.Body.Close()
-
 	if e != nil {
 		return resp.Status, e
 	}
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	buf := make([]byte, 4096)
 	nr, _ := resp.Body.Read(buf)

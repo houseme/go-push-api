@@ -30,7 +30,7 @@ func (hc *httpClient) baseHost(env mi.RequestEnv) string {
 func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte, error) {
 	form := hc.messageToForm(builder)
 
-	req, err := http.NewRequest("POST", hc.baseHost(params.MiEnv)+params.MiUrl, strings.NewReader(form.Encode()))
+	req, err := http.NewRequest("POST", hc.baseHost(params.MiEnv)+params.MiURL, strings.NewReader(form.Encode()))
 
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte
 	if err != nil {
 		return nil, err
 	}
-	res.Body.Close()
+	_ = res.Body.Close()
 
 	return body, nil
 }
@@ -60,7 +60,7 @@ func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte
 func (hc *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte, error) {
 	form := hc.messageToForm(builder)
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s?%s", hc.baseHost(params.MiEnv)+params.MiUrl, form.Encode()), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s?%s", hc.baseHost(params.MiEnv)+params.MiURL, form.Encode()), nil)
 
 	if err != nil {
 		return nil, err
@@ -114,5 +114,5 @@ func (hc *httpClient) messageToForm(builder *builder.Builder) *url.Values {
 		}
 	}
 
-	return form, nil
+	return form
 }

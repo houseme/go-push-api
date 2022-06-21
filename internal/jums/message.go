@@ -362,33 +362,33 @@ func MsgWechatWork(config interface{}) *MsgData {
 		"enable_duplicate_check":   1,
 		"duplicate_check_interval": 1800,
 	}
-	switch (interface{})(config).(type) {
+	switch config.(type) {
 	case WechatWkConfigText:
-		data, _ := config.(WechatWkConfigText)
+		data := config.(WechatWkConfigText)
 		result["msgtype"] = "text"
 		result["text"] = map[string]interface{}{
 			"content": data.Content,
 		}
 	case WechatWkConfigImage:
-		data, _ := config.(WechatWkConfigImage)
+		data := config.(WechatWkConfigImage)
 		result["msgtype"] = "image"
 		result["image"] = map[string]interface{}{
 			"media_id": data.MediaID,
 		}
 	case WechatWkConfigFile:
-		data, _ := config.(WechatWkConfigFile)
+		data := config.(WechatWkConfigFile)
 		result["msgtype"] = "file"
 		result["file"] = map[string]interface{}{
 			"media_id": data.MediaID,
 		}
 	case []WechatWkConfigNews:
-		data, _ := config.([]WechatWkConfigNews)
+		data := config.([]WechatWkConfigNews)
 		result["msgtype"] = "news"
 		result["news"] = map[string]interface{}{
 			"articles": data,
 		}
 	case []WechatWkConfigMpNews:
-		data, _ := config.([]WechatWkConfigNews)
+		data := config.([]WechatWkConfigNews)
 		result["msgtype"] = "mpnews"
 		result["mpnews"] = map[string]interface{}{
 			"articles": data,

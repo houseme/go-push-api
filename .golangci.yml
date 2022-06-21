@@ -21,12 +21,12 @@ linters:
     - errcheck
     - funlen
     - goconst
-    - gocritic
+#    - gocritic
     - gocyclo
     - gofmt
     - goimports
     - goprintffuncname
-    - gosimple
+#    - gosimple
     - govet
     - ineffassign
     - misspell
@@ -61,9 +61,9 @@ issues:
       text: "unnecessaryDefer:"
 
 linters-settings:
-  errcheck:
-    check-type-assertions: true # 这里建议设置为true，如果确实不需要检查，可以写成`num, _ := strconv.Atoi(numStr)`
-    check-blank: false
+#  errcheck:
+#    check-type-assertions: true # 这里建议设置为true，如果确实不需要检查，可以写成`num, _ := strconv.Atoi(numStr)`
+#    check-blank: false
   lll:
     line-length: 240 # 一行的长度
   godox:

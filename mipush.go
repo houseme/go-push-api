@@ -17,6 +17,6 @@ func RevokeMessage(builder *builder.Builder, params mi.Params) (*mi.Result, erro
 }
 
 // DealTopic 处理topic
-func DealTopic() error {
-	return api.Message.DealTopic()
+func DealTopic(builder *builder.Builder, params mi.Params) error {
+	return api.Message.DealTopic(builder, params)
 }
