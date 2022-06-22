@@ -32,8 +32,8 @@ func NewClient(appKey, masterSecret string) *Client {
 }
 
 // Push .
-func (jc *Client) Push(po *builder.PushPayload) (string, error) {
-	if len(jc.appKey) != KeyLength || len(jc.masterSecret) != KeyLength {
+func (c *Client) Push(po *builder.PushPayload) (string, error) {
+	if len(c.appKey) != KeyLength || len(c.masterSecret) != KeyLength {
 		return "", fmt.Errorf("invalidate appkey/masterSecret")
 	}
 
@@ -52,9 +52,9 @@ func (jc *Client) Push(po *builder.PushPayload) (string, error) {
 	req.Header.Set("Connection", "Keep-Alive")
 	req.Header.Set("Accept-Charset", "UTF-8")
 	req.Header.Set("Content-Type", "application/json")
-	req.SetBasicAuth(jc.appKey, jc.masterSecret)
+	req.SetBasicAuth(c.appKey, c.masterSecret)
 
-	c := http.Client{
+	client := http.Client{
 		Transport: &http.Transport{
 			DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
 				c, err := net.DialTimeout(network, addr, time.Second*ConnTimeout)
@@ -69,7 +69,7 @@ func (jc *Client) Push(po *builder.PushPayload) (string, error) {
 		},
 	}
 
-	resp, e := c.Do(req)
+	resp, e := client.Do(req)
 	if e != nil {
 		return resp.Status, e
 	}

@@ -79,17 +79,27 @@ const (
 	// MsgContent .
 	MsgContent string = "msg_content"
 	// NOTIFICATION .
-	NOTIFICATION  string = "notification"
+	NOTIFICATION string = "notification"
+	// OverrideMsgID fileter the message by message id.
 	OverrideMsgID string = "override_msg_id"
-	OPTIONS       string = "options"
-	PLATFORM      string = "platform"
-	SENDNO        string = "sendno"
-	TAG           string = "tag"
-	TagAnd        string = "tag_and"
-	TITLE         string = "title"
-	TTL           string = "time_to_live"
-	REGISTRATION  string = "registration_id"
-	WpOpenPage    string = "_open_page"
+	// OPTIONS .
+	OPTIONS string = "options"
+	// PLATFORM .
+	PLATFORM string = "platform"
+	// SENDNO .
+	SENDNO string = "sendno"
+	// TAG .
+	TAG string = "tag"
+	// TagAnd .
+	TagAnd string = "tag_and"
+	// TITLE .
+	TITLE string = "title"
+	// TTL .
+	TTL string = "time_to_live"
+	// REGISTRATION .
+	REGISTRATION string = "registration_id"
+	// WpOpenPage .
+	WpOpenPage string = "_open_page"
 )
 
 // Platform .
@@ -102,18 +112,18 @@ func NewPlatform() *Platform {
 }
 
 // AddPlatform .
-func (vp *Platform) AddPlatform(platform ...TypePlatform) *Platform {
-	*vp = append(*vp, platform...)
-	return vp
+func (p *Platform) AddPlatform(platform ...TypePlatform) *Platform {
+	*p = append(*p, platform...)
+	return p
 }
 
 // Value .
-func (vp *Platform) Value() interface{} {
-	if len(*vp) == 0 {
+func (p *Platform) Value() interface{} {
+	if len(*p) == 0 {
 		return ALL
 	}
 
-	return vp
+	return p
 }
 
 // Audience .
@@ -126,42 +136,42 @@ func NewAudience() *Audience {
 }
 
 // AddCond .
-func (va *Audience) AddCond(key, value string) *Audience {
-	if _, ok := (*va)[key]; !ok {
-		(*va)[key] = make([]string, 0)
+func (a *Audience) AddCond(key, value string) *Audience {
+	if _, ok := (*a)[key]; !ok {
+		(*a)[key] = make([]string, 0)
 	}
 
-	(*va)[key] = append((*va)[key], value)
-	return va
+	(*a)[key] = append((*a)[key], value)
+	return a
 }
 
 // AddTag .
-func (va *Audience) AddTag(tag string) *Audience {
-	return va.AddCond(TAG, tag)
+func (a *Audience) AddTag(tag string) *Audience {
+	return a.AddCond(TAG, tag)
 }
 
 // AddTadAnd .
-func (va *Audience) AddTadAnd(tagAnd string) *Audience {
-	return va.AddCond(TagAnd, tagAnd)
+func (a *Audience) AddTadAnd(tagAnd string) *Audience {
+	return a.AddCond(TagAnd, tagAnd)
 }
 
 // AddAlias .
-func (va *Audience) AddAlias(alias string) *Audience {
-	return va.AddCond(ALIAS, alias)
+func (a *Audience) AddAlias(alias string) *Audience {
+	return a.AddCond(ALIAS, alias)
 }
 
 // AddRegistrationID .
-func (va *Audience) AddRegistrationID(id string) *Audience {
-	return va.AddCond(REGISTRATION, id)
+func (a *Audience) AddRegistrationID(id string) *Audience {
+	return a.AddCond(REGISTRATION, id)
 }
 
 // Value .
-func (va *Audience) Value() interface{} {
-	if len(*va) == 0 {
+func (a *Audience) Value() interface{} {
+	if len(*a) == 0 {
 		return ALL
 	}
 
-	return va
+	return a
 }
 
 // Extras .
@@ -174,9 +184,9 @@ func NewExtras() *Extras {
 }
 
 // Add .
-func (ve *Extras) Add(name string, value interface{}) *Extras {
-	(*ve)[name] = value
-	return ve
+func (e *Extras) Add(name string, value interface{}) *Extras {
+	(*e)[name] = value
+	return e
 }
 
 // Android .
@@ -190,21 +200,21 @@ func NewAndroid(alert string) *Android {
 }
 
 // AddTitle .
-func (va *Android) AddTitle(title string) *Android {
-	(*va)[TITLE] = title
-	return va
+func (a *Android) AddTitle(title string) *Android {
+	(*a)[TITLE] = title
+	return a
 }
 
 // AddBuilderID .
-func (va *Android) AddBuilderID(bid int) *Android {
-	(*va)[BuilderID] = bid
-	return va
+func (a *Android) AddBuilderID(bid int) *Android {
+	(*a)[BuilderID] = bid
+	return a
 }
 
 // AddExtras .
-func (va *Android) AddExtras(e *Extras) *Android {
-	(*va)[EXTRAS] = e
-	return va
+func (a *Android) AddExtras(e *Extras) *Android {
+	(*a)[EXTRAS] = e
+	return a
 }
 
 // iOS .
@@ -220,27 +230,27 @@ func NewIOS(alert string) *iOS {
 }
 
 // AddSound .
-func (vi *iOS) AddSound(sd string) *iOS {
-	(*vi)[IosSound] = sd
-	return vi
+func (i *iOS) AddSound(sd string) *iOS {
+	(*i)[IosSound] = sd
+	return i
 }
 
 // AddBadge .
-func (vi *iOS) AddBadge(bd int) *iOS {
-	(*vi)[IosBadge] = bd
-	return vi
+func (i *iOS) AddBadge(bd int) *iOS {
+	(*i)[IosBadge] = bd
+	return i
 }
 
 // AddContentAvailable .
-func (vi *iOS) AddContentAvailable(b bool) *iOS {
-	(*vi)[IosContentAvailable] = b
-	return vi
+func (i *iOS) AddContentAvailable(b bool) *iOS {
+	(*i)[IosContentAvailable] = b
+	return i
 }
 
 // AddExtras .
-func (vi *iOS) AddExtras(e *Extras) *iOS {
-	(*vi)[EXTRAS] = e
-	return vi
+func (i *iOS) AddExtras(e *Extras) *iOS {
+	(*i)[EXTRAS] = e
+	return i
 }
 
 // WinPhone .
@@ -254,21 +264,21 @@ func NewWinPhone(alert string) *WinPhone {
 }
 
 // AddTitle .
-func (vw *WinPhone) AddTitle(title string) *WinPhone {
-	(*vw)[TITLE] = title
-	return vw
+func (w *WinPhone) AddTitle(title string) *WinPhone {
+	(*w)[TITLE] = title
+	return w
 }
 
 // AddOpenPage .
-func (vw *WinPhone) AddOpenPage(op int) *WinPhone {
-	(*vw)[WpOpenPage] = op
-	return vw
+func (w *WinPhone) AddOpenPage(op int) *WinPhone {
+	(*w)[WpOpenPage] = op
+	return w
 }
 
 // AddExtras .
-func (vw *WinPhone) AddExtras(e *Extras) *WinPhone {
-	(*vw)[EXTRAS] = e
-	return vw
+func (w *WinPhone) AddExtras(e *Extras) *WinPhone {
+	(*w)[EXTRAS] = e
+	return w
 }
 
 // Notification .
@@ -282,21 +292,21 @@ func NewNotification(defaultAlert string) *Notification {
 }
 
 // AddAndroid .
-func (vn *Notification) AddAndroid(android *Android) *Notification {
-	(*vn)[string(PlatformAndroid)] = android
-	return vn
+func (n *Notification) AddAndroid(android *Android) *Notification {
+	(*n)[string(PlatformAndroid)] = android
+	return n
 }
 
 // AddIOS .
-func (vn *Notification) AddIOS(ios *iOS) *Notification {
-	(*vn)[string(PlatformIOS)] = ios
-	return vn
+func (n *Notification) AddIOS(ios *iOS) *Notification {
+	(*n)[string(PlatformIOS)] = ios
+	return n
 }
 
 // AddWinPhone .
-func (vn *Notification) AddWinPhone(wp *WinPhone) *Notification {
-	(*vn)[string(PlatformWinPhone)] = wp
-	return vn
+func (n *Notification) AddWinPhone(wp *WinPhone) *Notification {
+	(*n)[string(PlatformWinPhone)] = wp
+	return n
 }
 
 // Message .
@@ -310,21 +320,21 @@ func NewMessage(msgContent string) *Message {
 }
 
 // AddTitle .
-func (om *Message) AddTitle(t string) *Message {
-	(*om)[TITLE] = t
-	return om
+func (m *Message) AddTitle(t string) *Message {
+	(*m)[TITLE] = t
+	return m
 }
 
 // AddContentType .
-func (om *Message) AddContentType(ct string) *Message {
-	(*om)[ContentType] = ct
-	return om
+func (m *Message) AddContentType(ct string) *Message {
+	(*m)[ContentType] = ct
+	return m
 }
 
 // AddExtras .
-func (om *Message) AddExtras(e *Extras) *Message {
-	(*om)[EXTRAS] = e
-	return om
+func (m *Message) AddExtras(e *Extras) *Message {
+	(*m)[EXTRAS] = e
+	return m
 }
 
 // Options .
@@ -337,27 +347,27 @@ func NewOptions() *Options {
 }
 
 // AddSendNo .
-func (vo *Options) AddSendNo(sn int) *Options {
-	(*vo)[SENDNO] = sn
-	return vo
+func (o *Options) AddSendNo(sn int) *Options {
+	(*o)[SENDNO] = sn
+	return o
 }
 
 // AddTimeToLive .
-func (vo *Options) AddTimeToLive(ttl int) *Options {
-	(*vo)[TTL] = ttl
-	return vo
+func (o *Options) AddTimeToLive(ttl int) *Options {
+	(*o)[TTL] = ttl
+	return o
 }
 
 // AddOverrideMsgID .
-func (vo *Options) AddOverrideMsgID(omi int) *Options {
-	(*vo)[OverrideMsgID] = omi
-	return vo
+func (o *Options) AddOverrideMsgID(omi int) *Options {
+	(*o)[OverrideMsgID] = omi
+	return o
 }
 
 // AddApnsProduction .
-func (vo *Options) AddApnsProduction(ap bool) *Options {
-	(*vo)[ApnsProduction] = ap
-	return vo
+func (o *Options) AddApnsProduction(ap bool) *Options {
+	(*o)[ApnsProduction] = ap
+	return o
 }
 
 // PushPayload .
@@ -372,40 +382,40 @@ func NewPushPayload(p *Platform, a *Audience) *PushPayload {
 }
 
 // Build .
-func (vm *PushPayload) Build(key string, comp interface{}) *PushPayload {
-	(*vm)[key] = comp
-	return vm
+func (p *PushPayload) Build(key string, comp interface{}) *PushPayload {
+	(*p)[key] = comp
+	return p
 }
 
 // AddNotification .
-func (vm *PushPayload) AddNotification(n *Notification) *PushPayload {
-	return vm.Build(NOTIFICATION, n)
+func (p *PushPayload) AddNotification(n *Notification) *PushPayload {
+	return p.Build(NOTIFICATION, n)
 }
 
 // AddMessage .
-func (vm *PushPayload) AddMessage(m *Message) *PushPayload {
-	return vm.Build(MESSAGE, m)
+func (p *PushPayload) AddMessage(m *Message) *PushPayload {
+	return p.Build(MESSAGE, m)
 }
 
 // AddOptions .
-func (vm *PushPayload) AddOptions(o *Options) *PushPayload {
-	return vm.Build(OPTIONS, o)
+func (p *PushPayload) AddOptions(o *Options) *PushPayload {
+	return p.Build(OPTIONS, o)
 }
 
 // ToJSONString .
-func (vm *PushPayload) ToJSONString() (string, error) {
-	for k, v := range *vm {
+func (p *PushPayload) ToJSONString() (string, error) {
+	for k, v := range *p {
 		if v == nil {
 			return "", fmt.Errorf("%s without a value", k)
 		}
 	}
 
-	if (*vm)[NOTIFICATION] == nil && (*vm)[MESSAGE] == nil {
+	if (*p)[NOTIFICATION] == nil && (*p)[MESSAGE] == nil {
 		return "", fmt.Errorf("without Notification/Message")
 	}
 
 	var length int
-	if ntf := (*vm)[NOTIFICATION]; ntf != nil {
+	if ntf := (*p)[NOTIFICATION]; ntf != nil {
 		if n, _ := ntf.(*Notification); n != nil {
 			if ios := (*n)[string(PlatformIOS)]; ios != nil {
 				if b, e := json.Marshal(ios); e != nil || len(b) > MaxIosLength {
@@ -421,7 +431,7 @@ func (vm *PushPayload) ToJSONString() (string, error) {
 		length += len(b)
 	}
 
-	if msg := (*vm)[MESSAGE]; msg != nil {
+	if msg := (*p)[MESSAGE]; msg != nil {
 		b, e := json.Marshal(msg)
 		if e != nil {
 			return "", e
@@ -433,7 +443,7 @@ func (vm *PushPayload) ToJSONString() (string, error) {
 		return "", fmt.Errorf("Notification/Message too large")
 	}
 
-	b, e := json.Marshal(vm)
+	b, e := json.Marshal(p)
 	if e != nil {
 		return "", e
 	}

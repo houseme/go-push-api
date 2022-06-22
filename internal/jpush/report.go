@@ -36,8 +36,8 @@ func NewReportClient(appKey, masterSecret string) *ReportClient {
 }
 
 // GetReport .
-func (jpc *ReportClient) GetReport(msgID ...int) (string, error) {
-	if len(jpc.appKey) != KeyLength || len(jpc.masterSecret) != KeyLength {
+func (c *ReportClient) GetReport(msgID ...int) (string, error) {
+	if len(c.appKey) != KeyLength || len(c.masterSecret) != KeyLength {
 		return "", fmt.Errorf("invalidate appkey/masterSecret")
 	}
 
@@ -57,9 +57,9 @@ func (jpc *ReportClient) GetReport(msgID ...int) (string, error) {
 	req.Header.Set("Connection", "Keep-Alive")
 	req.Header.Set("Accept-Charset", "UTF-8")
 	req.Header.Set("Content-Type", "application/json")
-	req.SetBasicAuth(jpc.appKey, jpc.masterSecret)
+	req.SetBasicAuth(c.appKey, c.masterSecret)
 
-	c := http.Client{
+	client := http.Client{
 		Transport: &http.Transport{
 			DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
 				c, err := net.DialTimeout(network, addr, time.Second*ConnTimeout)
@@ -74,7 +74,7 @@ func (jpc *ReportClient) GetReport(msgID ...int) (string, error) {
 		},
 	}
 
-	resp, e := c.Do(req)
+	resp, e := client.Do(req)
 	if e != nil {
 		return resp.Status, e
 	}
@@ -91,8 +91,8 @@ func (jpc *ReportClient) GetReport(msgID ...int) (string, error) {
 }
 
 // GetReportObject .
-func (jpc *ReportClient) GetReportObject(msgIds ...int) ([]ReportObject, error) {
-	report, err := jpc.GetReport(msgIds...)
+func (c *ReportClient) GetReportObject(msgIds ...int) ([]ReportObject, error) {
+	report, err := c.GetReport(msgIds...)
 	if err != nil {
 		return nil, err
 	}
