@@ -36,3 +36,8 @@ You can contribute in one of three ways:
 ## License
 
 The Go-Push-API is open-sourced software licensed under the [MIT license](./LICENSE).
+
+
+## Security
+
+[![OSCS Status](https://www.oscs1024.com/platform/badge/houseme/go-push-api.svg?size=large)](https://www.oscs1024.com/project/houseme/go-push-api?ref=badge_large)
