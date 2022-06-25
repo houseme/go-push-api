@@ -13,7 +13,7 @@ provide developers with stable, reliable, and efficient push services.
 
 #### JiPush
 
-Aurora, push, authentication, SMS, magic chain RESTFul API PHP SDK, including auroral push (JPush), auroral magic chain (JMLink), auroral SMS (JSMS), auroral authentication (JVerification) and other related open source projects.
+Aurora, push, authentication, SMS, magic chain RESTFul API Go SDK, including auroral push (JPush), auroral magic chain (JMLink), auroral SMS (JSMS), auroral authentication (JVerification) and other related open source projects.
 
 ## Installation
 
