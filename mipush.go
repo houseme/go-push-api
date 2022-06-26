@@ -20,3 +20,8 @@ func RevokeMessage(builder *builder.Builder, params mi.Params) (*mi.Result, erro
 func DealTopic(builder *builder.Builder, params mi.Params) error {
 	return api.Message.DealTopic(builder, params)
 }
+
+// SubscribeTopicByRegID 注册topic
+func SubscribeTopicByRegID(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	return api.Topic.SubscribeTopicByRegID(builder, params)
+}
