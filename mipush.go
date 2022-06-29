@@ -25,3 +25,8 @@ func DealTopic(builder *builder.Builder, params mi.Params) error {
 func SubscribeTopicByRegID(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
 	return api.Topic.SubscribeTopicByRegID(builder, params)
 }
+
+// BatchSubscribeTopicByRegIds 批量注册主题
+func BatchSubscribeTopicByRegIds(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	return api.Topic.BatchSubscribeTopicByRegIds(builder, params)
+}
