@@ -30,3 +30,8 @@ func SubscribeTopicByRegID(builder *builder.Builder, params mi.Params) (*mi.Resu
 func BatchSubscribeTopicByRegIds(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
 	return api.Topic.BatchSubscribeTopicByRegIds(builder, params)
 }
+
+// SubscribeTopicByAlias 通过别名订阅topic
+func SubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	return api.Topic.SubscribeTopicByAlias(builder, params)
+}
