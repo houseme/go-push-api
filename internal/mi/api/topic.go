@@ -21,7 +21,7 @@ type apiTopic struct {
 
 // SubscribeTopicByRegID 注册topic
 func (a *apiTopic) SubscribeTopicByRegID(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.SubscribeURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func (a *apiTopic) SubscribeTopicByRegID(builder *builder.Builder, params mi.Par
 
 // BatchSubscribeTopicByRegIds 批量注册主题
 func (a *apiTopic) BatchSubscribeTopicByRegIds(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.SubscribeURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err
@@ -41,7 +41,7 @@ func (a *apiTopic) BatchSubscribeTopicByRegIds(builder *builder.Builder, params 
 
 // SubscribeTopicByAlias 注册topic
 func (a *apiTopic) SubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.SubscribeAliasURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (a *apiTopic) SubscribeTopicByAlias(builder *builder.Builder, params mi.Par
 
 // BatchSubscribeTopicByAlias 批量注册主题
 func (a *apiTopic) BatchSubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.SubscribeAliasURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err
@@ -61,7 +61,7 @@ func (a *apiTopic) BatchSubscribeTopicByAlias(builder *builder.Builder, params m
 
 // UnSubscribeTopicByRegID 通过regId取消注册topic
 func (a *apiTopic) UnSubscribeTopicByRegID(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.UnsubscribeURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err
@@ -71,7 +71,7 @@ func (a *apiTopic) UnSubscribeTopicByRegID(builder *builder.Builder, params mi.P
 
 // BatchUnSubscribeTopicByRegIds 通过regId批量取消注册主题
 func (a *apiTopic) BatchUnSubscribeTopicByRegIds(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.UnsubscribeURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err
@@ -81,7 +81,7 @@ func (a *apiTopic) BatchUnSubscribeTopicByRegIds(builder *builder.Builder, param
 
 // UnSubscribeTopicByAlias 通过Alias取消注册topic
 func (a *apiTopic) UnSubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.UnsubscribeAliasURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err
@@ -91,7 +91,7 @@ func (a *apiTopic) UnSubscribeTopicByAlias(builder *builder.Builder, params mi.P
 
 // BatchUnSubscribeTopicByAlias 通过Alias批量取消主题
 func (a *apiTopic) BatchUnSubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
-	params.MiURL = mi.MessageAllURL
+	params.MiURL = mi.UnsubscribeAliasURL
 	res, err := helper.Client.DoPost(builder, params)
 	if err != nil {
 		return nil, err

@@ -40,3 +40,8 @@ func SubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Resu
 func BatchSubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
 	return api.Topic.BatchSubscribeTopicByAlias(builder, params)
 }
+
+// UnSubscribeTopicByRegID 通过regId取消注册topic
+func UnSubscribeTopicByRegID(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	return api.Topic.UnSubscribeTopicByRegID(builder, params)
+}
