@@ -55,3 +55,8 @@ func UnSubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Re
 func BatchUnSubscribeTopicByAlias(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
 	return api.Topic.BatchUnSubscribeTopicByAlias(builder, params)
 }
+
+// GetMessageStatus 获取消息状态
+func GetMessageStatus(builder *builder.Builder, params mi.Params) (*mi.Result, error) {
+	return api.Tracer.GetMessageStatus(builder, params)
+}
