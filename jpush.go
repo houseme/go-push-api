@@ -1,4 +1,4 @@
-package pushapi
+package push
 
 import (
 	"context"

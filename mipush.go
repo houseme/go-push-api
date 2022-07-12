@@ -1,4 +1,4 @@
-package pushapi
+package push
 
 import (
 	"github.com/houseme/go-push-api/internal/mi"

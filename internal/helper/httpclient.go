@@ -19,7 +19,7 @@ type httpClient struct {
 }
 
 // baseHost 请求的 服务域名 默认正式环境
-func (hc *httpClient) baseHost(env mi.RequestEnv) string {
+func (c *httpClient) baseHost(env mi.RequestEnv) string {
 	if env == mi.SandBoxRequestEnv {
 		return mi.SandboxHost
 	}
@@ -27,10 +27,10 @@ func (hc *httpClient) baseHost(env mi.RequestEnv) string {
 }
 
 // DoPost Net Do post request
-func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte, error) {
-	form := hc.messageToForm(builder)
+func (c *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte, error) {
+	form := c.messageToForm(builder)
 
-	req, err := http.NewRequest("POST", hc.baseHost(params.MiEnv)+params.MiURL, strings.NewReader(form.Encode()))
+	req, err := http.NewRequest("POST", c.baseHost(params.MiEnv)+params.MiURL, strings.NewReader(form.Encode()))
 
 	if err != nil {
 		return nil, err
@@ -57,10 +57,10 @@ func (hc *httpClient) DoPost(builder *builder.Builder, params mi.Params) ([]byte
 }
 
 // DoGet Net Do get request
-func (hc *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte, error) {
-	form := hc.messageToForm(builder)
+func (c *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte, error) {
+	form := c.messageToForm(builder)
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s?%s", hc.baseHost(params.MiEnv)+params.MiURL, form.Encode()), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s?%s", c.baseHost(params.MiEnv)+params.MiURL, form.Encode()), nil)
 
 	if err != nil {
 		return nil, err
@@ -77,7 +77,9 @@ func (hc *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte,
 	if err != nil {
 		return nil, err
 	}
-	defer res.Body.Close()
+	defer func() {
+		_ = res.Body.Close()
+	}()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
@@ -87,7 +89,7 @@ func (hc *httpClient) DoGet(builder *builder.Builder, params mi.Params) ([]byte,
 }
 
 // messageToForm 消息转表单，小米推送接口使用form表单提交
-func (hc *httpClient) messageToForm(builder *builder.Builder) *url.Values {
+func (c *httpClient) messageToForm(builder *builder.Builder) *url.Values {
 	form := &url.Values{}
 	form.Add("restricted_package_name", builder.RestrictedPackageName)
 	form.Add("payload", builder.Payload)
