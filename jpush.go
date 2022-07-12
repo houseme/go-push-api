@@ -15,7 +15,7 @@ type Jums struct {
 // SendSms 发送短信
 func (j *Jums) SendSms(tempID int, phone, code, signID string) error {
 	var adu = []string{phone}
-	return j.client.Message().To(jums.ToSms("sms", adu)).Content(jums.MsgSms(signID, tempID, map[string]any{"code": code})).Send()
+	return j.client.Message().To(jums.ToSms("sms", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
 }
 
 // NewClient 创建推送客户端
