@@ -39,3 +39,9 @@ func (j *Jums) SendEmail(ctx context.Context, tempID int, email, code, signID st
 	var adu = []string{email}
 	return j.client.Message().To(jums.ToEmail("sms", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
 }
+
+// SendWechat 发送微信
+func (j *Jums) SendWechat(ctx context.Context, tempID int, openID, code, signID string) error {
+	var adu = []string{openID}
+	return j.client.Message().To(jums.ToWechatMp("wechat", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
+}
