@@ -51,3 +51,9 @@ func (j *Jums) SendAPP(ctx context.Context, tempID int, appID, code, signID stri
 	var adu = []string{appID}
 	return j.client.Message().To(jums.ToApp("app", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
 }
+
+// ToWechatLite 发送微信小程序
+func (j *Jums) ToWechatLite(ctx context.Context, tempID int, appID, code, signID string) error {
+	var adu = []string{appID}
+	return j.client.Message().To(jums.ToWechatLite("app", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
+}
