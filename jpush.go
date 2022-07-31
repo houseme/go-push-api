@@ -69,3 +69,9 @@ func (j *Jums) SendDingTalkCC(ctx context.Context, tempID int, appID, code, sign
 	var adu = []string{appID}
 	return j.client.Message().To(jums.ToDingTalkCC("dingtalkcc", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
 }
+
+// SendWechatMp 发送微信公众号
+func (j *Jums) SendWechatMp(ctx context.Context, tempID int, appID, code, signID string) error {
+	var adu = []string{appID}
+	return j.client.Message().To(jums.ToWechatMp("msg_wechatoa", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
+}
