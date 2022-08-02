@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/buger/jsonparser v1.1.2-0.20210620171241-dc92d6932a12
-	github.com/gofiber/fiber/v2 v2.35.0
+	github.com/gofiber/fiber/v2 v2.36.0
 	github.com/gofrs/uuid v4.2.0+incompatible
 )
 
