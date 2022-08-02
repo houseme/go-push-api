@@ -75,3 +75,9 @@ func (j *Jums) SendWechatMp(ctx context.Context, tempID int, appID, code, signID
 	var adu = []string{appID}
 	return j.client.Message().To(jums.ToWechatMp("msg_wechatoa", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
 }
+
+// SendAlipayLife 发送支付宝生活号
+func (j *Jums) SendAlipayLife(ctx context.Context, tempID int, appID, code, signID string) error {
+	var adu = []string{appID}
+	return j.client.Message().To(jums.ToAlipayLife("alipaylife", adu)).Content(jums.MsgSms(signID, tempID, map[string]interface{}{"code": code})).Send()
+}
