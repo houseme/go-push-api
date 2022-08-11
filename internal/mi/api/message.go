@@ -4,12 +4,13 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 	"time"
 
+	"github.com/houseme/go-push-api/internal/helper"
 	"github.com/houseme/go-push-api/internal/mi"
 	"github.com/houseme/go-push-api/internal/mi/builder"
 )
@@ -103,11 +104,11 @@ func (a *apiMessage) SendMessage(builder *builder.Builder, params mi.Params) (*m
 		return nil, err
 	}
 	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(body)
+	return helper.ToJSON(body)
 }
 
 // RevokeMessage revoke message
@@ -137,11 +138,11 @@ func (a *apiMessage) RevokeMessage(builder *builder.Builder, params mi.Params) (
 		return nil, err
 	}
 	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(body)
+	return helper.ToJSON(body)
 }
 
 // DealTopic deal topic

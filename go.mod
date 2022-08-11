@@ -1,6 +1,6 @@
 module github.com/houseme/go-push-api
 
-go 1.17
+go 1.18
 
 require (
 	github.com/buger/jsonparser v1.1.2-0.20210620171241-dc92d6932a12
@@ -14,5 +14,5 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.38.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f // indirect
+	golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664 // indirect
 )

@@ -1,5 +1,18 @@
 package mi
 
+import (
+	"time"
+)
+
+// Params .
+type Params struct {
+	AppSecret   string        `json:"appSecret"`
+	MiURL       string        `json:"miUrl"`
+	MiEnv       RequestEnv    `json:"miEnv"`
+	TimeOut     time.Duration `json:"timeOut"`
+	AccountType AccountType   `json:"accountType"`
+}
+
 // Result 小米推送接口返回的结果，主体结构是一致的
 type Result struct {
 	Code        int64  `json:"code"`                  // 0表示成功，非0表示失败

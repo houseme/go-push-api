@@ -26,7 +26,7 @@ func (a *apiTopic) SubscribeTopicByRegID(builder *builder.Builder, params mi.Par
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
 
 // BatchSubscribeTopicByRegIds 批量注册主题
@@ -36,7 +36,7 @@ func (a *apiTopic) BatchSubscribeTopicByRegIds(builder *builder.Builder, params 
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
 
 // SubscribeTopicByAlias 注册topic
@@ -46,7 +46,7 @@ func (a *apiTopic) SubscribeTopicByAlias(builder *builder.Builder, params mi.Par
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
 
 // BatchSubscribeTopicByAlias 批量注册主题
@@ -56,7 +56,7 @@ func (a *apiTopic) BatchSubscribeTopicByAlias(builder *builder.Builder, params m
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
 
 // UnSubscribeTopicByRegID 通过regId取消注册topic
@@ -66,7 +66,7 @@ func (a *apiTopic) UnSubscribeTopicByRegID(builder *builder.Builder, params mi.P
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
 
 // BatchUnSubscribeTopicByRegIds 通过regId批量取消注册主题
@@ -76,7 +76,7 @@ func (a *apiTopic) BatchUnSubscribeTopicByRegIds(builder *builder.Builder, param
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
 
 // UnSubscribeTopicByAlias 通过Alias取消注册topic
@@ -86,7 +86,7 @@ func (a *apiTopic) UnSubscribeTopicByAlias(builder *builder.Builder, params mi.P
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
 
 // BatchUnSubscribeTopicByAlias 通过Alias批量取消主题
@@ -96,5 +96,5 @@ func (a *apiTopic) BatchUnSubscribeTopicByAlias(builder *builder.Builder, params
 	if err != nil {
 		return nil, err
 	}
-	return mi.ToJSON(res)
+	return helper.ToJSON(res)
 }
