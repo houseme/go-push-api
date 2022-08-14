@@ -1,10 +1,14 @@
 package jums
 
 import (
-	"encoding/json"
+	"context"
 	"errors"
+	"time"
 
-	"github.com/gofiber/fiber/v2"
+	"github.com/bytedance/sonic"
+	"github.com/cloudwego/hertz/pkg/app/client"
+	"github.com/cloudwego/hertz/pkg/protocol"
+	"github.com/cloudwego/hertz/pkg/protocol/consts"
 )
 
 // Jums 极光统一推送
@@ -74,17 +78,36 @@ func (u *Jums) UserDel(userid ...uint) error {
 
 // Request 请求数据
 func Request(url string, key string, secret string, data interface{}) error {
-	var err error
-	_, body, errs := fiber.Post("https://api.ums.jiguang.cn/"+url).Debug().BasicAuth(key, secret).JSON(data).Bytes()
-	if len(errs) > 0 {
-		return errs[0]
+	var (
+		jsonByte, err = sonic.Marshal(data)
+		c             *client.Client
+	)
+	if err != nil {
+		return err
 	}
+
+	if c, err = client.NewClient(
+		client.WithDialTimeout(5 * time.Second),
+	); err != nil {
+		return err
+	}
+	req := &protocol.Request{}
+	res := &protocol.Response{}
+	req.SetMethod(consts.MethodPost)
+	req.Header.SetContentTypeBytes([]byte("application/json"))
+	req.URI().SetUsername(key)
+	req.URI().SetPassword(secret)
+	req.SetRequestURI("https://api.ums.jiguang.cn/" + url)
+	req.SetBody(jsonByte)
+	if err = c.Do(context.Background(), req, res); err != nil {
+		return err
+	}
+
 	var api struct {
 		Code    int
 		Message string
 	}
-	err = json.Unmarshal(body, &api)
-	if err != nil {
+	if err = sonic.Unmarshal(res.Body(), &api); err != nil {
 		return errors.New("jums request failed")
 	}
 

@@ -18,6 +18,7 @@ warningCode = 0
     severity = "error"
     arguments = [160]
 [rule.var-naming]
+    arguments = [["ID", "URL", "IP", "HTTP", "JSON", "API", "UID","Http","Ip","Url","Id","Json","Api","Uid"], ["VM"]]
 [rule.var-declaration]
 [rule.package-comments]
 [rule.range]
