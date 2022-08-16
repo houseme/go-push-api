@@ -63,14 +63,6 @@ func (c *httpClient) do(ctx context.Context, builder *builder.Builder, params mi
 	return res.Body(), nil
 }
 
-// baseHost 请求的 服务域名 默认正式环境
-func (c *httpClient) baseHost(env mi.RequestEnv) string {
-	if env == mi.SandBoxRequestEnv {
-		return mi.SandboxHost
-	}
-	return mi.OfficialHost
-}
-
 // requestURL 请求的url
 func (c *httpClient) requestURL(_ context.Context, env mi.RequestEnv, url string) string {
 	var host = mi.OfficialHost
