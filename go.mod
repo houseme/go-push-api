@@ -6,7 +6,7 @@ require (
 	github.com/buger/jsonparser v1.1.2-0.20210620171241-dc92d6932a12
 	github.com/bytedance/sonic v1.4.0
 	github.com/cloudwego/hertz v0.2.2-0.20220812023910-2cc9d0c4bb37
-	github.com/gofrs/uuid v4.2.0+incompatible
+	github.com/gofrs/uuid v4.3.0+incompatible
 )
 
 require (
