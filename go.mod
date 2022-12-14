@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/buger/jsonparser v1.1.2-0.20210620171241-dc92d6932a12
-	github.com/bytedance/sonic v1.5.0
+	github.com/bytedance/sonic v1.6.0
 	github.com/cloudwego/hertz v0.2.2-0.20220812023910-2cc9d0c4bb37
 	github.com/gofrs/uuid v4.3.1+incompatible
 )
@@ -13,7 +13,7 @@ require (
 	github.com/andeya/goutil v0.0.0-20220704075712-42f2ec55fe8d // indirect
 	github.com/bytedance/go-tagexpr/v2 v2.9.5 // indirect
 	github.com/bytedance/gopkg v0.0.0-20220801033949-48202986124f // indirect
-	github.com/chenzhuoyu/base64x v0.0.0-20220526154910-8bf9453eb81a // indirect
+	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/cloudwego/netpoll v0.2.6 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/henrylee2cn/ameda v1.5.0 // indirect
