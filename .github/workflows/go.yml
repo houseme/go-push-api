@@ -46,7 +46,7 @@ jobs:
       - uses: actions/setup-go@v4
       - uses: actions/checkout@v3
       - name: Run Revive Action
-        uses: morphy2k/revive-action@v2.4.1
+        uses: morphy2k/revive-action@v2.5.0
         with:
           # Path to your Revive config within the repo (optional)
           config: revive.toml
