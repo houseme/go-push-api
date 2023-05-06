@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/buger/jsonparser v1.1.2-0.20210620171241-dc92d6932a12
 	github.com/bytedance/sonic v1.8.8
-	github.com/cloudwego/hertz v0.6.2
+	github.com/cloudwego/hertz v0.6.3
 	github.com/gofrs/uuid v4.4.0+incompatible
 )
 
